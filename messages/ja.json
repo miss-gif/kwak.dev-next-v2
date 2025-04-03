@@ -1,0 +1,50 @@
+{
+  "Metadata": {
+    "title": "Kwak.dev",
+    "description": "Kwak.devのウェブサイトです。"
+  },
+
+  "Bnner-Top-left": {
+    "website": "ウェブサイト",
+    "blog": "ブログ"
+  },
+  "Bnner-Top-light": {
+    "contact": "お問い合わせ",
+    "admin": "管理者"
+  },
+
+  "Header-Top-left": {
+    "introduction": "紹介",
+    "community": "コミュニティ"
+  },
+  "Header-Top-light": {
+    "setting": "언어 설정",
+    "change": "변경",
+    "login": "ログイン"
+  },
+
+  "Header-Bottom-left": {
+    "search": "検索"
+  },
+  "Header-Bottom-light": {
+    "main": "メイン",
+    "todos": "やること",
+    "note": "ノート",
+    "notice": "お知らせ"
+  },
+
+  "HomePage": {
+    "title": "こんにちは！",
+    "about": "紹介ページに移動"
+  },
+  "HomePage2": {
+    "title": "こんにちは！",
+    "about": "紹介ページに移動"
+  },
+  "menu": {
+    "home": "ホーム",
+    "products": "製品",
+    "about": "会社紹介",
+    "contact": "お問い合わせ"
+  }
+}

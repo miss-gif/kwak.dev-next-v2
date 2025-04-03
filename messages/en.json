@@ -1,20 +1,50 @@
 {
+  "Metadata": {
+    "title": "Kwak.dev",
+    "description": "This is the website of Kwak.dev."
+  },
+
+  "Bnner-Top-left": {
+    "website": "website",
+    "blog": "blog"
+  },
+  "Bnner-Top-light": {
+    "contact": "Contact",
+    "admin": "Admin"
+  },
+
+  "Header-Top-left": {
+    "introduction": "Introduction",
+    "community": "Community"
+  },
+  "Header-Top-light": {
+    "setting": "언어 설정",
+    "change": "변경",
+    "login": "Login"
+  },
+
+  "Header-Bottom-left": {
+    "search": "Search"
+  },
+  "Header-Bottom-light": {
+    "main": "Main",
+    "todos": "To-do",
+    "note": "Note",
+    "notice": "Notice"
+  },
+
   "HomePage": {
-    "title": "Hello world!",
-    "about": "Go to the about page"
+    "title": "Hello!",
+    "about": "Go to the introduction page"
   },
   "HomePage2": {
-    "title": "세요!",
-    "about": "소이지로 이동"
+    "title": "Hello!",
+    "about": "Go to the introduction page"
   },
   "menu": {
     "home": "Home",
     "products": "Products",
     "about": "About Us",
     "contact": "Contact"
-  },
-  "Metadata": {
-    "title": "Metadata",
-    "description": "Metadata description"
   }
 }

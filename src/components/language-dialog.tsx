@@ -1,8 +1,5 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import { useRouter } from "next/navigation";
-// import Cookies from "js-cookie";
 import { Button } from "@/components/ui/button";
 import {
   Dialog,
@@ -17,28 +14,62 @@ import {
 import { Label } from "@/components/ui/label";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { GlobeIcon } from "lucide-react";
+import { usePathname, useRouter } from "next/navigation";
+import { useState } from "react";
 
-const languageOptions = [
+type LanguageCode = "ko" | "en" | "ja";
+
+type LanguageOption = {
+  value: LanguageCode;
+  label: string;
+};
+
+type LanguageDialogText = {
+  setting: string;
+  change: string;
+};
+
+const LANGUAGE_OPTIONS: LanguageOption[] = [
   { value: "ko", label: "한국어" },
   { value: "en", label: "English" },
   { value: "ja", label: "日本語" },
 ];
 
-export function LanguageDialog() {
-  const router = useRouter();
-  const [currentLanguage, setCurrentLanguage] = useState("ko"); // 쿠키에서 가져온 현재 언어
-  const [selectedLanguage, setSelectedLanguage] = useState("ko"); // 사용자가 선택한 언어
+const LANGUAGE_DIALOG_OPTIONS: Record<LanguageCode, LanguageDialogText> = {
+  ko: { setting: "언어 설정", change: "변경" },
+  en: { setting: "Language Settings", change: "Change" },
+  ja: { setting: "言語設定", change: "変更" },
+};
 
-  useEffect(() => {
-    // 쿠키에서 현재 언어 불러오기
-    // const savedLocale = Cookies.get("NEXT_LOCALE") || "ko";
-    // setCurrentLanguage(savedLocale);
-    // setSelectedLanguage(savedLocale); // 초기 선택값도 설정
-  }, []);
+const DEFAULT_LANGUAGE: LanguageCode = "ko";
+
+export function LanguageDialog() {
+  const pathname = usePathname();
+  const router = useRouter();
+
+  // Extract language from pathname or use default
+  const currentPathLanguage =
+    (pathname.split("/")[1] as LanguageCode) || DEFAULT_LANGUAGE;
+
+  const [currentLanguage, setCurrentLanguage] =
+    useState<LanguageCode>(currentPathLanguage);
+  const [selectedLanguage, setSelectedLanguage] =
+    useState<LanguageCode>(currentPathLanguage);
+
+  // Find the current language label
+  const currentLanguageLabel = LANGUAGE_OPTIONS.find(
+    (lang) => lang.value === currentLanguage
+  )?.label;
 
   const handleLanguageChange = () => {
-    setCurrentLanguage(selectedLanguage); // 버튼을 눌러야 현재 언어가 변경됨
-    // Cookies.set("NEXT_LOCALE", selectedLanguage, { expires: 365 });
+    if (currentLanguage === selectedLanguage) return;
+
+    const newPath =
+      pathname.replace(/^\/(ko|en|ja)/, `/${selectedLanguage}`) ||
+      `/${selectedLanguage}${pathname}`;
+
+    setCurrentLanguage(selectedLanguage);
+    router.push(newPath);
     router.refresh();
   };
 
@@ -47,35 +78,36 @@ export function LanguageDialog() {
       <DialogTrigger asChild>
         <Button variant="ghost" className="text-sm flex items-center gap-2">
           <GlobeIcon />
-          {
-            languageOptions.find((lang) => lang.value === currentLanguage)
-              ?.label
-          }
+          {currentLanguageLabel}
         </Button>
       </DialogTrigger>
       <DialogContent className="sm:max-w-[425px]">
         <DialogHeader>
-          <DialogTitle>언어 설정</DialogTitle>
+          <DialogTitle>
+            {LANGUAGE_DIALOG_OPTIONS[selectedLanguage].setting}
+          </DialogTitle>
           <DialogDescription className="sr-only">
-            언어 설정 Dialog입니다.
+            {LANGUAGE_DIALOG_OPTIONS[selectedLanguage].setting} It is an area.
           </DialogDescription>
         </DialogHeader>
 
         <RadioGroup
           value={selectedLanguage}
-          onValueChange={setSelectedLanguage} // 사용자가 선택한 값만 변경 (즉시 반영 X)
+          onValueChange={(value: LanguageCode) => setSelectedLanguage(value)}
         >
-          {languageOptions.map(({ value, label }) => (
+          {LANGUAGE_OPTIONS.map(({ value, label }) => (
             <div key={value} className="flex items-center space-x-2">
-              <RadioGroupItem value={value} id={`r-${value}`} />
-              <Label htmlFor={`r-${value}`}>{label}</Label>
+              <RadioGroupItem value={value} id={`lang-${value}`} />
+              <Label htmlFor={`lang-${value}`}>{label}</Label>
             </div>
           ))}
         </RadioGroup>
 
         <DialogFooter>
           <DialogClose asChild>
-            <Button onClick={handleLanguageChange}>변경</Button>
+            <Button onClick={handleLanguageChange}>
+              {LANGUAGE_DIALOG_OPTIONS[selectedLanguage].change}
+            </Button>
           </DialogClose>
         </DialogFooter>
       </DialogContent>
