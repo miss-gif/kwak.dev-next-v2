@@ -2,5 +2,19 @@
   "HomePage": {
     "title": "안녕하세요!",
     "about": "소개 페이지로 이동"
+  },
+  "HomePage2": {
+    "title": "세요!",
+    "about": "소이지로 이동"
+  },
+  "menu": {
+    "home": "홈",
+    "products": "제품",
+    "about": "회사 소개",
+    "contact": "문의"
+  },
+  "Metadata": {
+    "title": "메타데이터",
+    "description": "메타데이터 설명"
   }
 }
