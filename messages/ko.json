@@ -18,9 +18,14 @@
     "community": "커뮤니티"
   },
   "Header-Top-light": {
-    "setting": "언어 설정",
-    "change": "변경",
-    "login": "로그인"
+    "signUp": "회원가입",
+    "findUser": "아이디 / 비밀번호 찾기"
+  },
+  "Header-Top-light-login": {
+    "login": "로그인",
+    "easyLogin": "간편 로그인",
+    "email": "이메일",
+    "password": "비밀번호"
   },
 
   "Header-Bottom-left": {

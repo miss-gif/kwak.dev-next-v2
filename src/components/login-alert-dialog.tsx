@@ -11,101 +11,95 @@ import {
 } from "@/components/ui/alert-dialog";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { GithubIcon } from "lucide-react";
 import Link from "next/link";
+import { getTranslations } from "next-intl/server";
+import { XIcon } from "lucide-react";
 
-export function LoginAlertDialog() {
-  const links = [
-    { href: "/signin/find/password", label: "비밀번호 찾기" },
-    { href: "/signup", label: "회원가입" },
-    { href: "/signin/find/id", label: "아이디(이메일) 찾기" },
+export async function LoginAlertDialog() {
+  const t1 = await getTranslations("Header-Top-light-login");
+  const t2 = await getTranslations("Header-Top-light");
+
+  const t2Arr = [
+    { href: "/signup", id: "signUp" },
+    { href: "/signin/find-user", id: "findUser" },
   ];
 
-  const socialLogin = [
-    {
-      name: "Kakao",
-      href: "/",
-      icon: <span>K</span>, // Replace with actual icon
-    },
-    {
-      name: "Naver",
-      href: "/",
-      icon: <span>N</span>, // Replace with actual icon
-    },
-    {
-      name: "Google",
-      href: "/",
-      icon: <span>G</span>, // Replace with actual icon
-    },
-    {
-      name: "Github",
-      href: "/",
-      icon: <GithubIcon />,
-    },
+  const socialLogins = [
+    { name: "Kakao", href: "/", icon: "Kakao" },
+    { name: "Google", href: "/", icon: "Google" },
   ];
+
+  const FooterLinks = () => (
+    <ul className="flex items-center justify-between gap-2">
+      {t2Arr.map((item) => (
+        <li key={item.id} className="flex gap-1">
+          <AlertDialogAction asChild className="hover:bg-transparent p-0">
+            <Link
+              href={item.href}
+              className="text-xs underline hover:font-semibold"
+            >
+              {t2(item.id)}
+            </Link>
+          </AlertDialogAction>
+        </li>
+      ))}
+    </ul>
+  );
+
+  const SocialLoginButtons = () => (
+    <div className="grid gap-2">
+      {socialLogins.map((item) => (
+        <AlertDialogAction asChild key={item.name}>
+          <Link href={item.href} className="border">
+            {item.icon}
+          </Link>
+        </AlertDialogAction>
+      ))}
+    </div>
+  );
 
   return (
     <AlertDialog>
       <AlertDialogTrigger asChild>
         <Button variant="default" className="text-sm">
-          로그인
+          {t1("login")}
         </Button>
       </AlertDialogTrigger>
-      <AlertDialogContent className="">
+      <AlertDialogContent>
         <AlertDialogHeader className="sr-only">
-          <AlertDialogTitle>로그인</AlertDialogTitle>
-          <AlertDialogDescription>로그인 Dialog 입니다.</AlertDialogDescription>
+          <AlertDialogTitle>{t1("login")}</AlertDialogTitle>
+          <AlertDialogDescription>
+            This is a {t1("login")} dialog.
+          </AlertDialogDescription>
         </AlertDialogHeader>
 
-        <div className="grid gap-4">
+        <div className="grid gap-2">
           <div className="text-center text-4xl font-semibold pt-5 pb-8">
             Kwak.dev
           </div>
-          <Input type="email" placeholder="이메일" />
-          <Input type="password" placeholder="비밀번호" />
+          <Input type="email" placeholder={t1("email")} />
+          <Input type="password" placeholder={t1("password")} />
           <AlertDialogAction
             asChild
             className="hover:bg-primary/90 hover:text-white"
           >
-            <Button className="w-full">로그인</Button>
+            <Button className="w-full">{t1("login")}</Button>
           </AlertDialogAction>
-
-          <ul className="flex gap-4 justify-center text-xs">
-            {links.map((item) => (
-              <li key={item.href} className="px-1">
-                <AlertDialogAction asChild className="hover:bg-transparent">
-                  <Link
-                    href={item.href}
-                    className="text-xs underline hover:font-semibold"
-                  >
-                    {item.label}
-                  </Link>
-                </AlertDialogAction>
-              </li>
-            ))}
-          </ul>
+          <FooterLinks />
         </div>
 
-        <div className="flex items-center justify-center gap-2 py-2">
-          <span></span>
-          <p className="text-xs">간편 로그인</p>
-          <span></span>
+        <div className="flex items-center justify-center gap-2 py-2 relative">
+          <span className="h-[1px] bg-gray-200 w-full absolute -z-10"></span>
+          <p className="text-xs bg-white px-4">{t1("easyLogin")}</p>
         </div>
 
-        <div className="flex justify-center gap-2">
-          {socialLogin.map((item) => (
-            <Link key={item.name} href={item.href}>
-              <AlertDialogAction asChild>
-                <Button variant="ghost" className="w-10 h-10 rounded-full">
-                  {item.icon}
-                </Button>
-              </AlertDialogAction>
-            </Link>
-          ))}
+        <SocialLoginButtons />
+
+        <div className="absolute top-0 right-0 p-2">
+          <AlertDialogCancel>
+            <XIcon />
+          </AlertDialogCancel>
         </div>
-        <AlertDialogFooter>
-          <AlertDialogCancel>X</AlertDialogCancel>
-        </AlertDialogFooter>
       </AlertDialogContent>
     </AlertDialog>
   );
