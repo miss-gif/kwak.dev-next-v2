@@ -30,14 +30,11 @@ export async function LoginAlertDialog() {
   ];
 
   const FooterLinks = () => (
-    <ul className="flex items-center justify-between gap-2">
+    <ul className="flex items-center justify-between">
       {t2Arr.map((item) => (
-        <li key={item.id} className="flex gap-1">
-          <AlertDialogAction asChild className="hover:bg-transparent p-0">
-            <Link
-              href={item.href}
-              className="text-xs underline hover:font-semibold"
-            >
+        <li key={item.id} className="flex gap-1 py-0">
+          <AlertDialogAction asChild className="hover:bg-transparent h-4">
+            <Link href={item.href} className="text-xs underline px-1">
               {t2(item.id)}
             </Link>
           </AlertDialogAction>
@@ -83,7 +80,7 @@ export async function LoginAlertDialog() {
             asChild
             className="hover:bg-primary/90 hover:text-white"
           >
-            <Button className="w-full">{t1("login")}</Button>
+            <Button className="w-full py-5">{t1("login")}</Button>
           </AlertDialogAction>
           <FooterLinks />
         </div>

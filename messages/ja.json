@@ -18,7 +18,14 @@
     "community": "コミュニティ"
   },
   "Header-Top-light": {
-    "login": "ログイン"
+    "signUp": "サインアップ",
+    "findUser": "ユーザー名 / パスワードを探す"
+  },
+  "Header-Top-light-login": {
+    "login": "ログイン",
+    "easyLogin": "簡単ログイン",
+    "email": "メール",
+    "password": "パスワード"
   },
 
   "Header-Bottom-left": {
@@ -29,20 +36,5 @@
     "todos": "やること",
     "note": "ノート",
     "notice": "お知らせ"
-  },
-
-  "HomePage": {
-    "title": "こんにちは！",
-    "about": "紹介ページに移動"
-  },
-  "HomePage2": {
-    "title": "こんにちは！",
-    "about": "紹介ページに移動"
-  },
-  "menu": {
-    "home": "ホーム",
-    "products": "製品",
-    "about": "会社紹介",
-    "contact": "お問い合わせ"
   }
 }

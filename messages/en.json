@@ -18,9 +18,15 @@
     "community": "Community"
   },
   "Header-Top-light": {
-    "login": "Login"
+    "signUp": "Sign Up",
+    "findUser": "Find ID / Password"
   },
-
+  "Header-Top-light-login": {
+    "login": "Login",
+    "easyLogin": "Easy Login",
+    "email": "Email",
+    "password": "Password"
+  },
   "Header-Bottom-left": {
     "search": "Search"
   },
@@ -29,20 +35,5 @@
     "todos": "To-do",
     "note": "Note",
     "notice": "Notice"
-  },
-
-  "HomePage": {
-    "title": "Hello!",
-    "about": "Go to the introduction page"
-  },
-  "HomePage2": {
-    "title": "Hello!",
-    "about": "Go to the introduction page"
-  },
-  "menu": {
-    "home": "Home",
-    "products": "Products",
-    "about": "About Us",
-    "contact": "Contact"
   }
 }
