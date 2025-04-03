@@ -1,7 +1,9 @@
 import { routing } from "@/i18n/routing";
 import { NextIntlClientProvider, hasLocale } from "next-intl";
-import { getTranslations, setRequestLocale } from "next-intl/server";
+import { getTranslations, setRequestLocale, getLocale } from "next-intl/server";
+import { Geist, Geist_Mono } from "next/font/google";
 import { notFound } from "next/navigation";
+import "../globals.css";
 
 interface Params {
   params: {
@@ -9,10 +11,21 @@ interface Params {
   };
 }
 
+const geistSans = Geist({
+  variable: "--font-geist-sans",
+  subsets: ["latin"],
+});
+
+const geistMono = Geist_Mono({
+  variable: "--font-geist-mono",
+  subsets: ["latin"],
+});
+
 export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }));
 }
 
+// 메타데이터
 export async function generateMetadata({ params }: Params) {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: "Metadata" });

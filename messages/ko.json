@@ -1,4 +1,37 @@
 {
+  "Metadata": {
+    "title": "Kwak.dev",
+    "description": "Kwak.dev의 웹사이트입니다."
+  },
+
+  "Bnner-Top-left": {
+    "website": "웹사이트",
+    "blog": "블로그"
+  },
+  "Bnner-Top-light": {
+    "contact": "문의",
+    "admin": "관리자"
+  },
+
+  "Header-Top-left": {
+    "introduction": "소개",
+    "community": "커뮤니티"
+  },
+  "Header-Top-light": {
+    "language": "한국어",
+    "login": "로그인"
+  },
+
+  "Header-Bottom-left": {
+    "search": "검색"
+  },
+  "Header-Bottom-light": {
+    "main": "메인",
+    "todos": "할 일",
+    "note": "note",
+    "notice": "notice"
+  },
+
   "HomePage": {
     "title": "안녕하세요!",
     "about": "소개 페이지로 이동"
@@ -12,9 +45,5 @@
     "products": "제품",
     "about": "회사 소개",
     "contact": "문의"
-  },
-  "Metadata": {
-    "title": "메타데이터",
-    "description": "메타데이터 설명"
   }
 }
