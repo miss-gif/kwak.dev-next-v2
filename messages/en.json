@@ -1,8 +1,14 @@
 {
   "Metadata": {
-    "title": "English Metadata 테스트입니다. English Metadata 테스트입니다. English Metadata 테스트입니다. English Metadata 테스트입니다. ",
+    "title": "Kwak.dev-en",
     "description": "English Metadata - description 테스트입니다. English Metadata - description 테스트입니다. English Metadata - description 테스트입니다. English Metadata - description 테스트입니다. English Metadata - description 테스트입니다. English Metadata - description 테스트입니다. English Metadata - description 테스트입니다. English Metadata - description 테스트입니다. English Metadata - description 테스트입니다. English Metadata - description 테스트입니다. English Metadata - description 테스트입니다. English Metadata - description 테스트입니다. English Metadata - description 테스트입니다. English Metadata - description 테스트입니다. English Metadata - description 테스트입니다. English Metadata - description 테스트입니다. English Metadata - description 테스트입니다. English Metadata - description 테스트입니다. English Metadata - description 테스트입니다. English Metadata - description 테스트입니다. English Metadata - description 테스트입니다. English Metadata - description 테스트입니다. English Metadata - description 테스트입니다. English Metadata - description 테스트입니다. English Metadata - description 테스트입니다. English Metadata - description 테스트입니다. English Metadata - description 테스트입니다. English Metadata - description 테스트입니다. ",
     "images": ["/thumbnail.png"]
+  },
+
+  "notFound": {
+    "text1": "Page not found.",
+    "text2": "The page you are looking for doesn't exist or may have been moved.",
+    "text3": "Return to home"
   },
 
   "BannerTop1": {

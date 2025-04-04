@@ -1,8 +1,14 @@
 {
   "Metadata": {
-    "title": "日本語 Metadata 테스트입니다. 日本語 Metadata 테스트입니다. 日本語 Metadata 테스트입니다. 日本語 Metadata 테스트입니다. ",
+    "title": "Kwak.dev-ja",
     "description": "日本語 Metadata - description 테스트입니다. 日本語 Metadata - description 테스트입니다. 日本語 Metadata - description 테스트입니다. 日本語 Metadata - description 테스트입니다. 日本語 Metadata - description 테스트입니다. 日本語 Metadata - description 테스트입니다. 日本語 Metadata - description 테스트입니다. 日本語 Metadata - description 테스트입니다. 日本語 Metadata - description 테스트입니다. 日本語 Metadata - description 테스트입니다. 日本語 Metadata - description 테스트입니다. 日本語 Metadata - description 테스트입니다. 日本語 Metadata - description 테스트입니다. 日本語 Metadata - description 테스트입니다. 日本語 Metadata - description 테스트입니다. 日本語 Metadata - description 테스트입니다. 日本語 Metadata - description 테스트입니다. 日本語 Metadata - description 테스트입니다. 日本語 Metadata - description 테스트입니다. 日本語 Metadata - description 테스트입니다. 日本語 Metadata - description 테스트입니다. 日本語 Metadata - description 테스트입니다. 日本語 Metadata - description 테스트입니다. 日本語 Metadata - description 테스트입니다. 日本語 Metadata - description 테스트입니다. 日本語 Metadata - description 테스트입니다. 日本語 Metadata - description 테스트입니다. 日本語 Metadata - description 테스트입니다. ",
     "images": ["/thumbnail.png"]
+  },
+
+  "notFound": {
+    "text1": "ページが見つかりません。",
+    "text2": "お探しのページは存在しないか、移動された可能性があります。",
+    "text3": "ホームに戻る"
   },
 
   "BannerTop1": {
