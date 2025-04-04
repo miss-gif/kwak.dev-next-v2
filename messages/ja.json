@@ -4,30 +4,6 @@
     "description": "Kwak.devのウェブサイトです。"
   },
 
-  "Bnner-Top-left": {
-    "website": "ウェブサイト",
-    "blog": "ブログ"
-  },
-  "Bnner-Top-light": {
-    "contact": "お問い合わせ",
-    "admin": "管理者"
-  },
-
-  "Header-Top-left": {
-    "introduction": "紹介",
-    "community": "コミュニティ"
-  },
-  "Header-Top-light": {
-    "signUp": "サインアップ",
-    "findUser": "ユーザー名 / パスワードを探す"
-  },
-  "Header-Top-light-login": {
-    "login": "ログイン",
-    "easyLogin": "簡単ログイン",
-    "email": "メール",
-    "password": "パスワード"
-  },
-
   "Header-Bottom-left": {
     "search": "検索"
   },
@@ -37,29 +13,166 @@
     "note": "ノート",
     "notice": "お知らせ"
   },
+
   "BannerTop1": {
     "element1": {
-      "label": "website",
-      "title": "やること",
+      "label": "ウェブサイト",
+      "title": "ウェブサイト",
       "href": "/website"
     },
     "element2": {
-      "label": "blog",
-      "title": "やること",
+      "label": "ブログ",
+      "title": "ブログ",
       "href": "/blog"
     }
   },
 
   "BannerTop2": {
     "element1": {
-      "label": "contact",
-      "title": "やること",
+      "label": "お問い合わせ",
+      "title": "お問い合わせ",
       "href": "/contact"
     },
     "element2": {
-      "label": "admin",
-      "title": "やること",
+      "label": "管理者",
+      "title": "管理者",
       "href": "/admin"
+    }
+  },
+
+  "HeaderTop1": {
+    "element1": {
+      "label": "紹介",
+      "title": "紹介",
+      "href": "/introduction"
+    },
+    "element2": {
+      "label": "コミュニティ",
+      "title": "コミュニティ",
+      "href": "/community"
+    }
+  },
+  "HeaderTop2": {
+    "element1": {
+      "label": "会員登録",
+      "title": "会員登録",
+      "href": "/signup"
+    },
+    "element2": {
+      "label": "ID / パスワード検索",
+      "title": "ID / パスワード検索",
+      "href": "/signin/find-user"
+    }
+  },
+  "HeaderTop3": {
+    "element1": {
+      "label": "カカオ",
+      "title": "カカオ",
+      "href": "/"
+    },
+    "element2": {
+      "label": "グーグル",
+      "title": "グーグル",
+      "href": "/"
+    }
+  },
+  "HeaderTop4": {
+    "login": "ログイン",
+    "easyLogin": "簡単ログイン",
+    "email": "メール",
+    "password": "パスワード"
+  },
+  "HeaderBottom1": {
+    "element1": {
+      "label": "ホーム",
+      "title": "ホーム",
+      "href": "/"
+    },
+    "element2": {
+      "label": "やること",
+      "title": "やること",
+      "href": "/todos"
+    }
+  },
+
+  "FooterTop1": {
+    "element1": {
+      "label": "サイト紹介",
+      "title": "サイト紹介",
+      "href": "/introduction"
+    },
+    "element2": {
+      "label": "フィード",
+      "title": "フィード",
+      "href": "/feed"
+    },
+    "element3": {
+      "label": "ブログ",
+      "title": "ブログ",
+      "href": "/blog"
+    }
+  },
+  "FooterTop2": {
+    "element1": {
+      "label": "プロジェクト",
+      "title": "プロジェクト",
+      "href": "/project"
+    }
+  },
+  "FooterTop3": {
+    "element1": {
+      "label": "よくある質問",
+      "title": "よくある質問",
+      "href": "/faq"
+    },
+    "element2": {
+      "label": "お問い合わせ",
+      "title": "お問い合わせ",
+      "href": "/inquiry"
+    }
+  },
+  "FooterTop4": {
+    "element1": {
+      "label": "コミュニティ",
+      "title": "コミュニティ",
+      "href": "/community"
+    }
+  },
+  "FooterTop5": {
+    "element1": {
+      "label": "開発者紹介",
+      "title": "開発者紹介",
+      "href": "/info"
+    }
+  },
+
+  "FooterButtom1": {
+    "logo": "Kwak.dev",
+    "text1": "革新はすべてのクルーの問いから始まります。",
+    "text2": "AIなしでは想像できない世界を作るためには、思いもよらない多くの問いが必要です。",
+    "text3": "世界を変える新しい問いを投げかけるクルーをお待ちしています。",
+    "element1": {
+      "label": "応募する",
+      "title": "応募する",
+      "href": "/"
+    }
+  },
+
+  "FooterButtom2": {
+    "element1": {
+      "label": "ギットハブ",
+      "title": "ギットハブ",
+      "href": "/"
+    },
+    "element2": {
+      "label": "ブログ",
+      "title": "ブログ",
+      "href": "/"
+    },
+    "element3": {
+      "label": "ノーション",
+      "title": "ノーション",
+      "href": "/"
     }
   }
 }

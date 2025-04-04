@@ -38,7 +38,7 @@ const LANGUAGE_OPTIONS: LanguageOption[] = [
 const LANGUAGE_DIALOG_OPTIONS: Record<LanguageCode, LanguageDialogText> = {
   ko: { setting: "언어 설정", change: "변경" },
   en: { setting: "Language Settings", change: "Change" },
-  ja: { setting: "言語設定", change: "変更" },
+  ja: { setting: "言語 設定", change: "変更" },
 };
 
 const DEFAULT_LANGUAGE: LanguageCode = "ko";

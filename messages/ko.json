@@ -93,5 +93,86 @@
       "title": "할 일 ",
       "href": "/todos"
     }
+  },
+
+  "FooterTop1": {
+    "element1": {
+      "label": "introduction",
+      "title": "사이트 소개",
+      "href": "/introduction"
+    },
+    "element2": {
+      "label": "feed",
+      "title": "피드 ",
+      "href": "/feed"
+    },
+    "element3": {
+      "label": "blog",
+      "title": "블로그 ",
+      "href": "/blog"
+    }
+  },
+  "FooterTop2": {
+    "element1": {
+      "label": "project",
+      "title": "프로젝트",
+      "href": "/project"
+    }
+  },
+  "FooterTop3": {
+    "element1": {
+      "label": "faq",
+      "title": "자주 묻는 질문",
+      "href": "/faq"
+    },
+    "element2": {
+      "label": "inquiry",
+      "title": "문의하기",
+      "href": "/inquiry"
+    }
+  },
+  "FooterTop4": {
+    "element1": {
+      "label": "community",
+      "title": "커뮤니티",
+      "href": "/community"
+    }
+  },
+  "FooterTop5": {
+    "element1": {
+      "label": "info",
+      "title": "개발자 소개",
+      "href": "/info"
+    }
+  },
+
+  "FooterButtom1": {
+    "logo": "Kwak.dev",
+    "text1": "혁신은 모든 크루의 물음에서 시작합니다.",
+    "text2": "AI 없이는 상상할 수 없는 세상을 만들기 위해선 생각하지 못한 많은 물음이 필요합니다.",
+    "text3": "세상을 변화시킬 수 있는 새로운 물음을 던질 크루를 기다립니다.",
+    "element1": {
+      "label": "apply",
+      "title": "지원하기",
+      "href": "/"
+    }
+  },
+
+  "FooterButtom2": {
+    "element1": {
+      "label": "깃허브",
+      "title": "깃허브",
+      "href": "/"
+    },
+    "element2": {
+      "label": "블로그",
+      "title": "블로그",
+      "href": "/"
+    },
+    "element3": {
+      "label": "노션",
+      "title": "노션",
+      "href": "/"
+    }
   }
 }

@@ -4,47 +4,25 @@
     "description": "This is the website of Kwak.dev."
   },
 
-  "Bnner-Top-left": {
-    "website": "website",
-    "blog": "blog"
-  },
-  "Bnner-Top-light": {
-    "contact": "Contact",
-    "admin": "Admin"
-  },
-
-  "Header-Top-left": {
-    "introduction": "Introduction",
-    "community": "Community"
-  },
-  "Header-Top-light": {
-    "signUp": "Sign Up",
-    "findUser": "Find ID / Password"
-  },
-  "Header-Top-light-login": {
-    "login": "Login",
-    "easyLogin": "Easy Login",
-    "email": "Email",
-    "password": "Password"
-  },
   "Header-Bottom-left": {
     "search": "Search"
   },
   "Header-Bottom-light": {
     "main": "Main",
-    "todos": "To-do",
+    "todos": "To-dos",
     "note": "Note",
     "notice": "Notice"
   },
+
   "BannerTop1": {
     "element1": {
       "label": "website",
-      "title": "Password",
+      "title": "Website",
       "href": "/website"
     },
     "element2": {
       "label": "blog",
-      "title": "Password",
+      "title": "Blog",
       "href": "/blog"
     }
   },
@@ -52,13 +30,149 @@
   "BannerTop2": {
     "element1": {
       "label": "contact",
-      "title": "Password",
+      "title": "Contact",
       "href": "/contact"
     },
     "element2": {
       "label": "admin",
-      "title": "Password",
+      "title": "Admin",
       "href": "/admin"
+    }
+  },
+
+  "HeaderTop1": {
+    "element1": {
+      "label": "introduction",
+      "title": "Introduction",
+      "href": "/introduction"
+    },
+    "element2": {
+      "label": "community",
+      "title": "Community",
+      "href": "/community"
+    }
+  },
+  "HeaderTop2": {
+    "element1": {
+      "label": "signUp",
+      "title": "Sign Up",
+      "href": "/signup"
+    },
+    "element2": {
+      "label": "findUser",
+      "title": "Find ID / Password",
+      "href": "/signin/find-user"
+    }
+  },
+  "HeaderTop3": {
+    "element1": {
+      "label": "kakao",
+      "title": "Kakao",
+      "href": "/"
+    },
+    "element2": {
+      "label": "google",
+      "title": "Google",
+      "href": "/"
+    }
+  },
+  "HeaderTop4": {
+    "login": "Login",
+    "easyLogin": "Easy Login",
+    "email": "Email",
+    "password": "Password"
+  },
+  "HeaderBottom1": {
+    "element1": {
+      "label": "home",
+      "title": "Home",
+      "href": "/"
+    },
+    "element2": {
+      "label": "todos",
+      "title": "To-dos",
+      "href": "/todos"
+    }
+  },
+
+  "FooterTop1": {
+    "element1": {
+      "label": "introduction",
+      "title": "Site Introduction",
+      "href": "/introduction"
+    },
+    "element2": {
+      "label": "feed",
+      "title": "Feed",
+      "href": "/feed"
+    },
+    "element3": {
+      "label": "blog",
+      "title": "Blog",
+      "href": "/blog"
+    }
+  },
+  "FooterTop2": {
+    "element1": {
+      "label": "project",
+      "title": "Project",
+      "href": "/project"
+    }
+  },
+  "FooterTop3": {
+    "element1": {
+      "label": "faq",
+      "title": "FAQ",
+      "href": "/faq"
+    },
+    "element2": {
+      "label": "inquiry",
+      "title": "Inquiry",
+      "href": "/inquiry"
+    }
+  },
+  "FooterTop4": {
+    "element1": {
+      "label": "community",
+      "title": "Community",
+      "href": "/community"
+    }
+  },
+  "FooterTop5": {
+    "element1": {
+      "label": "info",
+      "title": "Developer Info",
+      "href": "/info"
+    }
+  },
+
+  "FooterButtom1": {
+    "logo": "Kwak.dev",
+    "text1": "Innovation starts with every crew's question.",
+    "text2": "To create a world unimaginable without AI, we need many unexpected questions.",
+    "text3": "We are waiting for crew members who will ask new questions that can change the world.",
+    "element1": {
+      "label": "apply",
+      "title": "Apply",
+      "href": "/"
+    }
+  },
+
+  "FooterButtom2": {
+    "element1": {
+      "label": "GitHub",
+      "title": "GitHub",
+      "href": "/"
+    },
+    "element2": {
+      "label": "Blog",
+      "title": "Blog",
+      "href": "/"
+    },
+    "element3": {
+      "label": "Notion",
+      "title": "Notion",
+      "href": "/"
     }
   }
 }

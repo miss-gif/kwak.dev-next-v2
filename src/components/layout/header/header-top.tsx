@@ -7,7 +7,6 @@ import { Input } from "@/components/ui/input";
 import { Link } from "@/i18n/navigation";
 import { SearchIcon } from "lucide-react";
 import { useTranslations } from "next-intl";
-import { RefObject } from "react";
 
 interface HeaderTopProps {
   inputRef: React.RefObject<HTMLInputElement | null>;
