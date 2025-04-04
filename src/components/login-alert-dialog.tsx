@@ -11,13 +11,14 @@ import {
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { XIcon } from "lucide-react";
+import { useTranslations } from "next-intl";
 import { getTranslations } from "next-intl/server";
 import Link from "next/link";
 
-export async function LoginAlertDialog() {
-  const t1 = await getTranslations("HeaderTop4");
-  const t3 = await getTranslations("HeaderTop2");
-  const t4 = await getTranslations("HeaderTop3");
+export function LoginAlertDialog() {
+  const t1 = useTranslations("HeaderTop4");
+  const t3 = useTranslations("HeaderTop2");
+  const t4 = useTranslations("HeaderTop3");
   const keys1 = ["element1", "element2"] as const;
 
   const FooterLinks = () => (

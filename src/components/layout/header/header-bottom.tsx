@@ -5,7 +5,7 @@ import { Link, usePathname } from "@/i18n/navigation";
 import { SearchIcon } from "lucide-react";
 import { useTranslations } from "next-intl";
 
-const HeaderBottom = () => {
+const HeaderBottom = ({ focusInput }: { focusInput: () => void }) => {
   const pathname = usePathname();
 
   const t1 = useTranslations("HeaderBottom1");
@@ -15,7 +15,10 @@ const HeaderBottom = () => {
     <div className="border-b border-b-slate-200">
       <Inner>
         <div className="flex items-center gap-8 py-2">
-          <div className="flex justify-center items-center flex-col text-xs gap-1 cursor-pointer">
+          <div
+            className="flex justify-center items-center flex-col text-xs gap-1 cursor-pointer"
+            onClick={focusInput}
+          >
             <SearchIcon size={18} />
             검색
           </div>

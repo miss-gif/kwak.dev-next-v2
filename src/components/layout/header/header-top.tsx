@@ -1,13 +1,20 @@
+"use client";
+
 import { LanguageDialog } from "@/components/language-dialog";
 import Inner from "@/components/layout/Inner";
 import { LoginAlertDialog } from "@/components/login-alert-dialog";
 import { Input } from "@/components/ui/input";
 import { Link } from "@/i18n/navigation";
 import { SearchIcon } from "lucide-react";
-import { getTranslations } from "next-intl/server";
+import { useTranslations } from "next-intl";
+import { RefObject } from "react";
 
-const HeaderTop = async () => {
-  const t1 = await getTranslations("HeaderTop1");
+interface HeaderTopProps {
+  inputRef: React.RefObject<HTMLInputElement | null>;
+}
+
+const HeaderTop = ({ inputRef }: HeaderTopProps) => {
+  const t1 = useTranslations("HeaderTop1");
   const keys1 = ["element1", "element2"] as const;
 
   return (
@@ -29,6 +36,7 @@ const HeaderTop = async () => {
 
             <div className="flex-1 relative flex items-center justify-end">
               <Input
+                ref={inputRef}
                 className="w-full"
                 placeholder="현재 기능 점검 중입니다."
               />
