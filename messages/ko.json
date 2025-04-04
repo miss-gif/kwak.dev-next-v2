@@ -81,5 +81,17 @@
     "easyLogin": "간편 로그인",
     "email": "이메일",
     "password": "비밀번호"
+  },
+  "HeaderBottom1": {
+    "element1": {
+      "label": "home",
+      "title": "홈",
+      "href": "/"
+    },
+    "element2": {
+      "label": "todos",
+      "title": "할 일 ",
+      "href": "/todos"
+    }
   }
 }

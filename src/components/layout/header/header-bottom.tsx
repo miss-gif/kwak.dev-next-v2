@@ -1,13 +1,15 @@
 "use client";
 
 import Inner from "@/components/layout/Inner";
+import { Link, usePathname } from "@/i18n/navigation";
 import { SearchIcon } from "lucide-react";
-import Link from "next/link";
-import { usePathname } from "next/navigation"; // 현재 경로 감지
-import { RefObject } from "react";
+import { useTranslations } from "next-intl";
 
 const HeaderBottom = () => {
-  const pathname = usePathname(); // 현재 URL 가져오기
+  const pathname = usePathname();
+
+  const t1 = useTranslations("HeaderBottom1");
+  const keys1 = ["element1", "element2"] as const;
 
   return (
     <div className="border-b border-b-slate-200">
@@ -17,7 +19,24 @@ const HeaderBottom = () => {
             <SearchIcon size={18} />
             검색
           </div>
-          <nav className="flex gap-8"></nav>
+          <nav className="flex gap-8">
+            {keys1.map((key) => {
+              const isActive = pathname === t1(`${key}.href`);
+
+              return (
+                <div key={t1(`${key}.label`)} className="">
+                  <Link
+                    href={t1(`${key}.href`)}
+                    className={`text-center text-xs hover:underline  ${
+                      isActive ? "font-bold" : "font-normal"
+                    }`}
+                  >
+                    {t1(`${key}.title`)}
+                  </Link>
+                </div>
+              );
+            })}
+          </nav>
         </div>
       </Inner>
     </div>

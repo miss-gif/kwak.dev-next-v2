@@ -3,6 +3,7 @@ import Inner from "@/components/layout/Inner";
 import { LoginAlertDialog } from "@/components/login-alert-dialog";
 import { Input } from "@/components/ui/input";
 import { Link } from "@/i18n/navigation";
+import { SearchIcon } from "lucide-react";
 import { getTranslations } from "next-intl/server";
 
 const HeaderTop = async () => {
@@ -26,8 +27,12 @@ const HeaderTop = async () => {
               ))}
             </div>
 
-            <div className="flex-1">
-              <Input className="w-full" />
+            <div className="flex-1 relative flex items-center justify-end">
+              <Input
+                className="w-full"
+                placeholder="현재 기능 점검 중입니다."
+              />
+              <SearchIcon size={20} className="absolute mx-3" />
             </div>
           </div>
           <div className="flex items-center gap-2">
