@@ -1,25 +1,15 @@
+//src/app/[locale]/layout.tsx
+
 import { routing } from "@/i18n/routing";
 import { NextIntlClientProvider, hasLocale } from "next-intl";
-import { getTranslations, setRequestLocale, getLocale } from "next-intl/server";
-import { Geist, Geist_Mono } from "next/font/google";
+import { getTranslations, setRequestLocale } from "next-intl/server";
 import { notFound } from "next/navigation";
-import "./globals.css";
 
 interface Params {
   params: {
     locale: string;
   };
 }
-
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
 
 export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }));
@@ -32,7 +22,12 @@ export async function generateMetadata({ params }: Params) {
 
   return {
     title: t("title"),
-    description: t("title"),
+    description: t("description"),
+    openGraph: {
+      title: t("title"),
+      description: t("description"),
+      images: ["/thumbnail.png"],
+    },
   };
 }
 
@@ -53,10 +48,6 @@ export default async function LocaleLayout({
   setRequestLocale(locale);
 
   return (
-    <html lang={locale}>
-      <body>
-        <NextIntlClientProvider>{children}</NextIntlClientProvider>
-      </body>
-    </html>
+    <NextIntlClientProvider locale={locale}>{children}</NextIntlClientProvider>
   );
 }

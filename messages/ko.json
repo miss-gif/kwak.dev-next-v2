@@ -1,17 +1,8 @@
 {
   "Metadata": {
-    "title": "Kwak.dev",
-    "description": "Kwak.dev의 웹사이트입니다."
-  },
-
-  "Header-Bottom-left": {
-    "search": "검색"
-  },
-  "Header-Bottom-light": {
-    "main": "메인",
-    "todos": "할 일",
-    "note": "note",
-    "notice": "notice"
+    "title": "한국어 Metadata 테스트입니다. 한국어 Metadata 테스트입니다. 한국어 Metadata 테스트입니다. 한국어 Metadata 테스트입니다. ",
+    "description": "한국어 Metadata - description 테스트입니다. 한국어 Metadata - description 테스트입니다. 한국어 Metadata - description 테스트입니다. 한국어 Metadata - description 테스트입니다. 한국어 Metadata - description 테스트입니다. 한국어 Metadata - description 테스트입니다. 한국어 Metadata - description 테스트입니다. 한국어 Metadata - description 테스트입니다. 한국어 Metadata - description 테스트입니다. 한국어 Metadata - description 테스트입니다. 한국어 Metadata - description 테스트입니다. 한국어 Metadata - description 테스트입니다. 한국어 Metadata - description 테스트입니다. 한국어 Metadata - description 테스트입니다. 한국어 Metadata - description 테스트입니다. 한국어 Metadata - description 테스트입니다. 한국어 Metadata - description 테스트입니다. 한국어 Metadata - description 테스트입니다. 한국어 Metadata - description 테스트입니다. 한국어 Metadata - description 테스트입니다. 한국어 Metadata - description 테스트입니다. 한국어 Metadata - description 테스트입니다. 한국어 Metadata - description 테스트입니다. 한국어 Metadata - description 테스트입니다. 한국어 Metadata - description 테스트입니다. 한국어 Metadata - description 테스트입니다. 한국어 Metadata - description 테스트입니다. 한국어 Metadata - description 테스트입니다. ",
+    "images": ["/thumbnail.png"]
   },
 
   "BannerTop1": {
