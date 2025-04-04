@@ -11,6 +11,17 @@
     "text3": "ホームに戻る"
   },
 
+  "LanguageDialog": {
+    "setting": "言語設定",
+    "settingDescription": "언어를 선택하는 영역입니다.",
+    "change": "変更",
+    "languageName": {
+      "ko": "한국어",
+      "en": "English",
+      "ja": "日本語"
+    }
+  },
+
   "BannerTop1": {
     "element1": {
       "label": "ウェブサイト",
