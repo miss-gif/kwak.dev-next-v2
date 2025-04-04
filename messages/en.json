@@ -123,12 +123,12 @@
     "element1": {
       "label": "faq",
       "title": "FAQ",
-      "href": "/faq"
+      "href": "/service/faq"
     },
     "element2": {
-      "label": "inquiry",
-      "title": "Inquiry",
-      "href": "/inquiry"
+      "label": "questions",
+      "title": "questions",
+      "href": "/service/questions"
     }
   },
   "FooterTop4": {

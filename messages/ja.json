@@ -123,12 +123,12 @@
     "element1": {
       "label": "よくある質問",
       "title": "よくある質問",
-      "href": "/faq"
+      "href": "/service/faq"
     },
     "element2": {
       "label": "お問い合わせ",
       "title": "お問い合わせ",
-      "href": "/inquiry"
+      "href": "/service/questions"
     }
   },
   "FooterTop4": {

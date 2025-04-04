@@ -13,10 +13,10 @@ const HeaderContainer = () => {
     }
   };
   return (
-    <>
+    <div className="sticky top-0 left-0 z-10 w-full bg-white dark:bg-black">
       <HeaderTop inputRef={inputRef} />
       <HeaderBottom focusInput={handleFocus} />
-    </>
+    </div>
   );
 };
 

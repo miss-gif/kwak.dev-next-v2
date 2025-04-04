@@ -123,12 +123,12 @@
     "element1": {
       "label": "faq",
       "title": "자주 묻는 질문",
-      "href": "/faq"
+      "href": "/service/faq"
     },
     "element2": {
-      "label": "inquiry",
+      "label": "questions",
       "title": "문의하기",
-      "href": "/inquiry"
+      "href": "/service/questions"
     }
   },
   "FooterTop4": {
@@ -162,12 +162,12 @@
     "element1": {
       "label": "깃허브",
       "title": "깃허브",
-      "href": "/"
+      "href": "https://github.com/miss-gif"
     },
     "element2": {
       "label": "블로그",
       "title": "블로그",
-      "href": "/"
+      "href": "https://kwak-blog.vercel.app"
     },
     "element3": {
       "label": "노션",
