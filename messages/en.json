@@ -35,5 +35,30 @@
     "todos": "To-do",
     "note": "Note",
     "notice": "Notice"
+  },
+  "BannerTop1": {
+    "element1": {
+      "label": "website",
+      "title": "Password",
+      "href": "/website"
+    },
+    "element2": {
+      "label": "blog",
+      "title": "Password",
+      "href": "/blog"
+    }
+  },
+
+  "BannerTop2": {
+    "element1": {
+      "label": "contact",
+      "title": "Password",
+      "href": "/contact"
+    },
+    "element2": {
+      "label": "admin",
+      "title": "Password",
+      "href": "/admin"
+    }
   }
 }

@@ -4,51 +4,42 @@ import {
   AlertDialogCancel,
   AlertDialogContent,
   AlertDialogDescription,
-  AlertDialogFooter,
   AlertDialogHeader,
   AlertDialogTitle,
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import Link from "next/link";
-import { getTranslations } from "next-intl/server";
 import { XIcon } from "lucide-react";
+import { getTranslations } from "next-intl/server";
+import Link from "next/link";
 
 export async function LoginAlertDialog() {
-  const t1 = await getTranslations("Header-Top-light-login");
-  const t2 = await getTranslations("Header-Top-light");
-
-  const t2Arr = [
-    { href: "/signup", id: "signUp" },
-    { href: "/signin/find-user", id: "findUser" },
-  ];
-
-  const socialLogins = [
-    { name: "Kakao", href: "/", icon: "Kakao" },
-    { name: "Google", href: "/", icon: "Google" },
-  ];
+  const t1 = await getTranslations("HeaderTop4");
+  const t3 = await getTranslations("HeaderTop2");
+  const t4 = await getTranslations("HeaderTop3");
+  const keys1 = ["element1", "element2"] as const;
 
   const FooterLinks = () => (
     <ul className="flex items-center justify-between">
-      {t2Arr.map((item) => (
-        <li key={item.id} className="flex gap-1 py-0">
+      {keys1.map((key) => (
+        <div key={t3(`${key}.label`)} className="flex gap-1 py-0">
           <AlertDialogAction asChild className="hover:bg-transparent h-4">
-            <Link href={item.href} className="text-xs underline px-1">
-              {t2(item.id)}
+            <Link href={t3(`${key}.href`)} className="text-xs underline px-1">
+              {t3(`${key}.title`)}
             </Link>
           </AlertDialogAction>
-        </li>
+        </div>
       ))}
     </ul>
   );
 
   const SocialLoginButtons = () => (
     <div className="grid gap-2">
-      {socialLogins.map((item) => (
-        <AlertDialogAction asChild key={item.name}>
-          <Link href={item.href} className="border">
-            {item.icon}
+      {keys1.map((key) => (
+        <AlertDialogAction asChild key={t4(`${key}.label`)}>
+          <Link href={t4(`${key}.href`)} className="border">
+            {t4(`${key}.title`)}
           </Link>
         </AlertDialogAction>
       ))}

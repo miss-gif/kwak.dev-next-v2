@@ -1,36 +1,29 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# next-intl를 사용한 i18n 전략
 
-## Getting Started
+1. 서버 컴포넌트에서 번역된 텍스트를 미리 props로 넘기기
 
-First, run the development server:
+- 특징
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+  - 클라이언트에서 번역 데이터를 사용할 수 있음 (props로 전달)
+  - 서버에서 getTranslations() 실행하여 번역된 값만 클라이언트로 넘김 (최적화)
+  - 정적인 번역 데이터에는 최적 (라우트 변경과 무관한 경우)
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- 적합성
+  - 정적이고 페이지 초기 로딩에 필요한 번역 데이터
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+2. 서버 액션을 사용해서 클라이언트에서 번역 데이터 가져오기
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- 특징
 
-## Learn More
+  - 클라이언트에서 번역 데이터를 비동기로 가져옴
+  - 언어 변경 시 즉시 반영 가능
+  - 초기 로딩 속도는 느려질 수 있음 (서버에서 데이터를 받아오기 때문)
 
-To learn more about Next.js, take a look at the following resources:
+- 적합성
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+  - 언어가 사용자 동작에 따라 바뀌고, 즉각적인 반응이 필요할 때 (ex. 드롭다운으로 언어 선택)
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+  - 언어 변경 시, 전체 페이지 리로드 없이 즉시 적용 가능
+  - 클라이언트에서 상태(State)로 관리 가능
+  - API 요청 없이도 언어 전환 가능 (캐싱 & 성능 최적화)
+  - 서버 액션을 활용하면 다국어 데이터 요청도 최적화 가능

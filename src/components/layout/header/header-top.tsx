@@ -6,13 +6,8 @@ import { Link } from "@/i18n/navigation";
 import { getTranslations } from "next-intl/server";
 
 const HeaderTop = async () => {
-  // 서버 컴포넌트에서는 getTranslations 사용
-  const t1 = await getTranslations("Header-Top-left");
-
-  const t1Arr = [
-    { id: "introduction", href: "/introduction" },
-    { id: "community", href: "/community" },
-  ];
+  const t1 = await getTranslations("HeaderTop1");
+  const keys1 = ["element1", "element2"] as const;
 
   return (
     <header>
@@ -23,15 +18,13 @@ const HeaderTop = async () => {
               <Link href={"/"}>Kwak.dev</Link>
             </h1>
 
-            <ul className="flex gap-2">
-              {t1Arr.map((item) => (
-                <li key={item.id} className="font-semibold">
-                  <Link key={item.id} href={item.href}>
-                    {t1(item.id)}
-                  </Link>
-                </li>
+            <div className="flex gap-2">
+              {keys1.map((key) => (
+                <div key={t1(`${key}.label`)} className="font-semibold">
+                  <Link href={t1(`${key}.href`)}>{t1(`${key}.title`)}</Link>
+                </div>
               ))}
-            </ul>
+            </div>
 
             <div className="flex-1">
               <Input className="w-full" />

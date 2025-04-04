@@ -3,19 +3,10 @@ import { Link } from "@/i18n/navigation";
 import { getTranslations } from "next-intl/server";
 
 const BannerTop = async () => {
-  // 서버 컴포넌트에서는 getTranslations 사용
-  const t1 = await getTranslations("Bnner-Top-left");
-  const t2 = await getTranslations("Bnner-Top-light");
-
-  const t1Arr = [
-    { id: "website", href: "/website" },
-    { id: "blog", href: "/blog" },
-  ];
-
-  const t2Arr = [
-    { id: "contact", href: "/contact" },
-    { id: "admin", href: "/admin" },
-  ];
+  const t1 = await getTranslations("BannerTop1");
+  const t2 = await getTranslations("BannerTop2");
+  const keys1 = ["element1", "element2"] as const;
+  const keys2 = ["element1", "element2"] as const;
 
   return (
     <div className="border-b border-b-slate-200 bg-white">
@@ -23,19 +14,19 @@ const BannerTop = async () => {
         <div className="flex items-center justify-between">
           <div className="flex">
             <div className="flex items-center gap-4 text-xs">
-              {t1Arr.map((item) => (
-                <Link key={item.id} href={item.href}>
-                  {t1(item.id)}
-                </Link>
+              {keys1.map((key) => (
+                <div key={t1(`${key}.label`)}>
+                  <Link href={t1(`${key}.href`)}>{t1(`${key}.title`)}</Link>
+                </div>
               ))}
             </div>
           </div>
           <div>
             <div className="flex items-center gap-4 text-xs">
-              {t2Arr.map((item) => (
-                <Link key={item.id} href={item.href}>
-                  {t2(item.id)}
-                </Link>
+              {keys2.map((key) => (
+                <div key={t2(`${key}.label`)}>
+                  <Link href={t2(`${key}.href`)}>{t2(`${key}.title`)}</Link>
+                </div>
               ))}
             </div>
           </div>

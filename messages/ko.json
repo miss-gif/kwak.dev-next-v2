@@ -4,30 +4,6 @@
     "description": "Kwak.dev의 웹사이트입니다."
   },
 
-  "Bnner-Top-left": {
-    "website": "웹사이트",
-    "blog": "블로그"
-  },
-  "Bnner-Top-light": {
-    "contact": "문의",
-    "admin": "관리자"
-  },
-
-  "Header-Top-left": {
-    "introduction": "소개",
-    "community": "커뮤니티"
-  },
-  "Header-Top-light": {
-    "signUp": "회원가입",
-    "findUser": "아이디 / 비밀번호 찾기"
-  },
-  "Header-Top-light-login": {
-    "login": "로그인",
-    "easyLogin": "간편 로그인",
-    "email": "이메일",
-    "password": "비밀번호"
-  },
-
   "Header-Bottom-left": {
     "search": "검색"
   },
@@ -36,5 +12,74 @@
     "todos": "할 일",
     "note": "note",
     "notice": "notice"
+  },
+
+  "BannerTop1": {
+    "element1": {
+      "label": "website",
+      "title": "웹사이트",
+      "href": "/website"
+    },
+    "element2": {
+      "label": "blog",
+      "title": "블로그",
+      "href": "/blog"
+    }
+  },
+
+  "BannerTop2": {
+    "element1": {
+      "label": "contact",
+      "title": "문의",
+      "href": "/contact"
+    },
+    "element2": {
+      "label": "admin",
+      "title": "관리자",
+      "href": "/admin"
+    }
+  },
+
+  "HeaderTop1": {
+    "element1": {
+      "label": "introduction",
+      "title": "소개",
+      "href": "/introduction"
+    },
+    "element2": {
+      "label": "community",
+      "title": "커뮤니티",
+      "href": "/community"
+    }
+  },
+  "HeaderTop2": {
+    "element1": {
+      "label": "signUp",
+      "title": "회원가입",
+      "href": "/signup"
+    },
+    "element2": {
+      "label": "findUser",
+      "title": "아이디 / 비밀번호 찾기",
+      "href": "/signin/find-user"
+    }
+  },
+  "HeaderTop3": {
+    "element1": {
+      "label": "kakao",
+      "title": "Kakao",
+      "href": "/"
+    },
+    "element2": {
+      "label": "google",
+      "title": "Google",
+      "href": "/"
+    }
+  },
+  "HeaderTop4": {
+    "login": "로그인",
+    "easyLogin": "간편 로그인",
+    "email": "이메일",
+    "password": "비밀번호"
   }
 }
