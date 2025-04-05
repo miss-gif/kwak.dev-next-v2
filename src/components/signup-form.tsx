@@ -4,11 +4,11 @@ import { Label } from "@/components/ui/label";
 import { useTranslations } from "next-intl";
 import Link from "next/link";
 
-const LoginForm = () => {
+const SignupForm = () => {
   const t1 = useTranslations("HeaderTop4");
   const t3 = useTranslations("HeaderTop2");
   const t4 = useTranslations("HeaderTop3");
-  const keys1 = ["element1"] as const;
+  const keys1 = ["element3"] as const;
   const keys2 = ["element2"] as const;
   const keys3 = ["element1", "element2"] as const;
 
@@ -30,9 +30,16 @@ const LoginForm = () => {
             placeholder={t1("password")}
             className="bg-gray-50 border border-gray-200 h-10 text-sm"
           />
+          <Label className="text-xs">{t1("passwordCheck")}</Label>
+          <Input
+            id="password"
+            type="password"
+            placeholder={t1("passwordCheck")}
+            className="bg-gray-50 border border-gray-200 h-10 text-sm"
+          />
         </div>
 
-        <Button className="w-full py-5">{t1("login")}</Button>
+        <Button className="w-full py-5">{t1("signup")}</Button>
 
         <div className="flex justify-center space-x-2 text-xs text-gray-400">
           {keys2.map((key) => (
@@ -48,7 +55,7 @@ const LoginForm = () => {
 
         <div className="flex items-center my-4">
           <div className="flex-grow h-px bg-gray-200"></div>
-          <span className="mx-4 text-sm text-gray-400">{t1("easyLogin")}</span>
+          <span className="mx-4 text-sm text-gray-400">{t1("easySignup")}</span>
           <div className="flex-grow h-px bg-gray-200"></div>
         </div>
 
@@ -62,7 +69,7 @@ const LoginForm = () => {
                 asChild
               >
                 <Link href={t4(`${key}.href`)}>
-                  <span>{t4(`${key}.title`)}</span>
+                  <span>{t4(`${key}.sigup`)}</span>
                 </Link>
               </Button>
             ))}
@@ -71,7 +78,7 @@ const LoginForm = () => {
       </div>
 
       <div className="text-center text-sm mt-4">
-        {t1("noUser")}
+        {t1("yesUser")}
         <span className="ml-1 font-medium">
           {keys1.map((key) => (
             <Link
@@ -88,4 +95,4 @@ const LoginForm = () => {
   );
 };
 
-export default LoginForm;
+export default SignupForm;
