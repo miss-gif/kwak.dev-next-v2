@@ -35,12 +35,12 @@ const formSchema = z
   });
 
 const SignupForm = () => {
-  const t1 = useTranslations("HeaderTop4");
-  const t3 = useTranslations("HeaderTop2");
-  const t4 = useTranslations("HeaderTop3");
-  const keys1 = ["element3"] as const;
+  const t2 = useTranslations("HeaderTop2");
+  const t3 = useTranslations("HeaderTop3");
+  const t4 = useTranslations("HeaderTop4");
   const keys2 = ["element2"] as const;
-  const keys3 = ["element1", "element2"] as const;
+  const keys3 = ["element3"] as const;
+  const keys4 = ["element1", "element2"] as const;
 
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
@@ -91,7 +91,7 @@ const SignupForm = () => {
             name="email"
             render={({ field }) => (
               <FormItem>
-                <FormLabel className="text-xs">{t1("email")}</FormLabel>
+                <FormLabel className="text-xs">{t4("email")}</FormLabel>
                 <FormControl>
                   <Input
                     placeholder="name@example.com"
@@ -108,7 +108,7 @@ const SignupForm = () => {
             name="password"
             render={({ field }) => (
               <FormItem>
-                <FormLabel className="text-xs">{t1("password")}</FormLabel>
+                <FormLabel className="text-xs">{t4("password")}</FormLabel>
                 <FormControl>
                   <Input
                     type="password"
@@ -125,7 +125,7 @@ const SignupForm = () => {
             name="confirmPassword"
             render={({ field }) => (
               <FormItem>
-                <FormLabel className="text-xs">{t1("passwordCheck")}</FormLabel>
+                <FormLabel className="text-xs">{t4("passwordCheck")}</FormLabel>
                 <FormControl>
                   <Input
                     type="password"
@@ -142,7 +142,7 @@ const SignupForm = () => {
               로딩중
             </Button>
           ) : (
-            <Button className="w-full py-5 mt-2">{t1("signup")}</Button>
+            <Button className="w-full py-5 mt-2">{t4("signup")}</Button>
           )}
         </form>
       </Form>
@@ -151,11 +151,11 @@ const SignupForm = () => {
       <div className="flex justify-center space-x-2 text-xs text-gray-400 mt-4">
         {keys2.map((key) => (
           <Link
-            key={t3(`${key}.label`)}
-            href={t3(`${key}.href`)}
+            key={t2(`${key}.label`)}
+            href={t2(`${key}.href`)}
             className="hover:underline"
           >
-            {t3(`${key}.title`)}
+            {t2(`${key}.title`)}
           </Link>
         ))}
       </div>
@@ -164,21 +164,21 @@ const SignupForm = () => {
       <div>
         <div className="flex items-center my-4">
           <div className="flex-grow h-px bg-gray-200"></div>
-          <span className="mx-4 text-xs">{t1("easySignup")}</span>
+          <span className="mx-4 text-xs">{t4("easySignup")}</span>
           <div className="flex-grow h-px bg-gray-200"></div>
         </div>
 
         <div className="text-center">
           <div className="flex flex-col space-y-3 w-full">
-            {keys3.map((key) => (
+            {keys4.map((key) => (
               <Button
-                key={t4(`${key}.label`)}
+                key={t3(`${key}.label`)}
                 variant="outline"
                 className="flex items-center justify-center py-2 rounded-md w-full"
                 asChild
               >
-                <Link href={t4(`${key}.href`)}>
-                  <span>{t4(`${key}.sigup`)}</span>
+                <Link href={t3(`${key}.href`)}>
+                  <span>{t3(`${key}.sigup`)}</span>
                 </Link>
               </Button>
             ))}
@@ -188,15 +188,15 @@ const SignupForm = () => {
 
       {/* 이미 계정이 있으신가요 */}
       <div className="text-center text-sm mt-4">
-        {t1("yesUser")}
+        {t4("yesUser")}
         <span className="ml-1 font-medium">
-          {keys1.map((key) => (
+          {keys3.map((key) => (
             <Link
-              key={t3(`${key}.label`)}
-              href={t3(`${key}.href`)}
+              key={t2(`${key}.label`)}
+              href={t2(`${key}.href`)}
               className="font-semibold hover:underline text-xs"
             >
-              {t3(`${key}.title`)}
+              {t2(`${key}.title`)}
             </Link>
           ))}
         </span>

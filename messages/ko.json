@@ -77,20 +77,18 @@
       "href": "/auth/login"
     }
   },
-  "HeaderTop3": {
-    "element1": {
-      "label": "kakao",
-      "title": "Kakao로 계속하기",
-      "sigup": "Kakao로 시작하기",
-      "href": "/Kakao"
-    },
-    "element2": {
-      "label": "google",
-      "title": "Google로 계속하기",
-      "sigup": "Google로 시작하기",
-      "href": "/Kakao"
-    }
+
+  "kakaoButton": {
+    "label": "kakao",
+    "login": "Kakao로 계속하기",
+    "sigup": "Kakao로 시작하기"
   },
+  "googleButton": {
+    "label": "google",
+    "login": "Google로 계속하기",
+    "sigup": "Google로 시작하기"
+  },
+
   "HeaderTop4": {
     "login": "로그인",
     "easyLogin": "간편 로그인",

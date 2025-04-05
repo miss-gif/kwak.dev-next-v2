@@ -10,6 +10,7 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
+import { signInWithGoogle, signInWithKakao } from "@/utils/supabase/actions";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useTranslations } from "next-intl";
 import Link from "next/link";
@@ -29,12 +30,12 @@ const formSchema = z.object({
 });
 
 const LoginForm = () => {
-  const t1 = useTranslations("HeaderTop4");
-  const t3 = useTranslations("HeaderTop2");
-  const t4 = useTranslations("HeaderTop3");
+  const t2 = useTranslations("HeaderTop2");
+  const t4 = useTranslations("HeaderTop4");
+  const b1 = useTranslations("kakaoButton");
+  const b2 = useTranslations("googleButton");
   const keys1 = ["element1"] as const;
   const keys2 = ["element2"] as const;
-  const keys3 = ["element1", "element2"] as const;
 
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
@@ -68,6 +69,44 @@ const LoginForm = () => {
     }
   }
 
+  const handleGoogleLogin = async () => {
+    try {
+      setIsLoading(true);
+      await signInWithGoogle();
+      toast.success("로그인 성공!", {
+        description: "메인 페이지로 이동합니다.",
+      });
+
+      router.push("/");
+      router.refresh();
+    } catch (error) {
+      toast.error("로그인 실패", {
+        description: "Google 로그인 중 오류가 발생했습니다.",
+      });
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  const handleKakaoLogin = async () => {
+    try {
+      setIsLoading(true);
+      await signInWithKakao();
+      toast.success("로그인 성공!", {
+        description: "메인 페이지로 이동합니다.",
+      });
+
+      // router.push("/dashboard");
+      // router.refresh();
+    } catch (error) {
+      toast.error("로그인 실패", {
+        description: "Google 로그인 중 오류가 발생했습니다.",
+      });
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
   return (
     <div>
       {/* 헤더 */}
@@ -85,7 +124,7 @@ const LoginForm = () => {
             name="email"
             render={({ field }) => (
               <FormItem>
-                <FormLabel className="text-xs">{t1("email")}</FormLabel>
+                <FormLabel className="text-xs">{t4("email")}</FormLabel>
                 <FormControl>
                   <Input
                     placeholder="name@example.com"
@@ -102,7 +141,7 @@ const LoginForm = () => {
             name="password"
             render={({ field }) => (
               <FormItem>
-                <FormLabel className="text-xs">{t1("password")}</FormLabel>
+                <FormLabel className="text-xs">{t4("password")}</FormLabel>
                 <FormControl>
                   <Input
                     type="password"
@@ -116,11 +155,15 @@ const LoginForm = () => {
           />
 
           {isLoading ? (
-            <Button type="submit" className="w-full py-5" disabled={isLoading}>
+            <Button
+              type="submit"
+              className="w-full py-5 mt-2"
+              disabled={isLoading}
+            >
               로딩중
             </Button>
           ) : (
-            <Button className="w-full py-5 mt-2">{t1("login")}</Button>
+            <Button className="w-full py-5 mt-2">{t4("login")}</Button>
           )}
         </form>
       </Form>
@@ -129,11 +172,11 @@ const LoginForm = () => {
       <div className="flex justify-center space-x-2 text-xs text-gray-400 mt-4">
         {keys2.map((key) => (
           <Link
-            key={t3(`${key}.label`)}
-            href={t3(`${key}.href`)}
+            key={t2(`${key}.label`)}
+            href={t2(`${key}.href`)}
             className="hover:underline"
           >
-            {t3(`${key}.title`)}
+            {t2(`${key}.title`)}
           </Link>
         ))}
       </div>
@@ -142,39 +185,41 @@ const LoginForm = () => {
       <div>
         <div className="flex items-center my-4">
           <div className="flex-grow h-px bg-gray-200"></div>
-          <span className="mx-4 text-sm text-gray-400">{t1("easyLogin")}</span>
+          <span className="mx-4 text-sm text-gray-400">{t4("easyLogin")}</span>
           <div className="flex-grow h-px bg-gray-200"></div>
         </div>
 
         <div className="text-center">
           <div className="flex flex-col space-y-3 w-full">
-            {keys3.map((key) => (
-              <Button
-                key={t4(`${key}.label`)}
-                variant="outline"
-                className="flex items-center justify-center py-2 rounded-md w-full"
-                asChild
-              >
-                <Link href={t4(`${key}.href`)}>
-                  <span>{t4(`${key}.title`)}</span>
-                </Link>
-              </Button>
-            ))}
+            <Button
+              variant={"outline"}
+              onClick={handleKakaoLogin}
+              disabled={isLoading}
+            >
+              {b1("login")}
+            </Button>
+            <Button
+              variant={"outline"}
+              onClick={handleGoogleLogin}
+              disabled={isLoading}
+            >
+              {b2("login")}
+            </Button>
           </div>
         </div>
       </div>
 
       {/* 이미 계정이 있으신가요 */}
       <div className="text-center text-sm mt-4">
-        {t1("noUser")}
+        {t4("noUser")}
         <span className="ml-1 font-medium">
           {keys1.map((key) => (
             <Link
-              key={t3(`${key}.label`)}
-              href={t3(`${key}.href`)}
+              key={t2(`${key}.label`)}
+              href={t2(`${key}.href`)}
               className="font-semibold hover:underline text-xs"
             >
-              {t3(`${key}.title`)}
+              {t2(`${key}.title`)}
             </Link>
           ))}
         </span>
