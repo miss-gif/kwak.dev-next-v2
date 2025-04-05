@@ -10,6 +10,7 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
+import { signInWithGoogle, signInWithKakao } from "@/utils/supabase/actions";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useTranslations } from "next-intl";
 import Link from "next/link";
@@ -36,8 +37,9 @@ const formSchema = z
 
 const SignupForm = () => {
   const t2 = useTranslations("HeaderTop2");
-  const t3 = useTranslations("HeaderTop3");
   const t4 = useTranslations("HeaderTop4");
+  const b1 = useTranslations("kakaoButton");
+  const b2 = useTranslations("googleButton");
   const keys2 = ["element2"] as const;
   const keys3 = ["element3"] as const;
   const keys4 = ["element1", "element2"] as const;
@@ -73,6 +75,50 @@ const SignupForm = () => {
       setIsLoading(false);
     }
   }
+
+  const handleGoogleLogin = async () => {
+    try {
+      setIsLoading(true);
+      await signInWithGoogle();
+      toast.success("구글 로그인 성공!", {
+        description: "메인 페이지로 이동합니다.",
+      });
+
+      alert("구글 로그인 성공");
+      console.log("구글 로그인 성공");
+
+      router.push("/");
+      router.refresh();
+    } catch (error) {
+      toast.error("구글 로그인 실패", {
+        description: "Google 로그인 중 오류가 발생했습니다.",
+      });
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  const handleKakaoLogin = async () => {
+    try {
+      setIsLoading(true);
+      await signInWithKakao();
+      toast.success("카카오 로그인 성공!", {
+        description: "메인 페이지로 이동합니다.",
+      });
+
+      alert("카카오 로그인 성공");
+      console.log("카카오 로그인 성공");
+
+      router.push("/");
+      router.refresh();
+    } catch (error) {
+      toast.error("카카오 로그인 실패", {
+        description: "Google 로그인 중 오류가 발생했습니다.",
+      });
+    } finally {
+      setIsLoading(false);
+    }
+  };
 
   return (
     <div>
@@ -170,18 +216,20 @@ const SignupForm = () => {
 
         <div className="text-center">
           <div className="flex flex-col space-y-3 w-full">
-            {keys4.map((key) => (
-              <Button
-                key={t3(`${key}.label`)}
-                variant="outline"
-                className="flex items-center justify-center py-2 rounded-md w-full"
-                asChild
-              >
-                <Link href={t3(`${key}.href`)}>
-                  <span>{t3(`${key}.sigup`)}</span>
-                </Link>
-              </Button>
-            ))}
+            <Button
+              variant={"outline"}
+              onClick={handleKakaoLogin}
+              disabled={isLoading}
+            >
+              {b1("signup")}
+            </Button>
+            <Button
+              variant={"outline"}
+              onClick={handleGoogleLogin}
+              disabled={isLoading}
+            >
+              {b2("signup")}
+            </Button>
           </div>
         </div>
       </div>

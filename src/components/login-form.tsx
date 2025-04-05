@@ -73,14 +73,17 @@ const LoginForm = () => {
     try {
       setIsLoading(true);
       await signInWithGoogle();
-      toast.success("로그인 성공!", {
+      toast.success("구글 로그인 성공!", {
         description: "메인 페이지로 이동합니다.",
       });
+
+      alert("구글 로그인 성공");
+      console.log("구글 로그인 성공");
 
       router.push("/");
       router.refresh();
     } catch (error) {
-      toast.error("로그인 실패", {
+      toast.error("구글 로그인 실패", {
         description: "Google 로그인 중 오류가 발생했습니다.",
       });
     } finally {
@@ -92,14 +95,17 @@ const LoginForm = () => {
     try {
       setIsLoading(true);
       await signInWithKakao();
-      toast.success("로그인 성공!", {
+      toast.success("카카오 로그인 성공!", {
         description: "메인 페이지로 이동합니다.",
       });
 
-      // router.push("/dashboard");
-      // router.refresh();
+      alert("카카오 로그인 성공");
+      console.log("카카오 로그인 성공");
+
+      router.push("/");
+      router.refresh();
     } catch (error) {
-      toast.error("로그인 실패", {
+      toast.error("카카오 로그인 실패", {
         description: "Google 로그인 중 오류가 발생했습니다.",
       });
     } finally {

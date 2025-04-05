@@ -81,12 +81,12 @@
   "kakaoButton": {
     "label": "kakao",
     "login": "Kakao로 계속하기",
-    "sigup": "Kakao로 시작하기"
+    "signup": "Kakao로 시작하기"
   },
   "googleButton": {
     "label": "google",
     "login": "Google로 계속하기",
-    "sigup": "Google로 시작하기"
+    "signup": "Google로 시작하기"
   },
 
   "HeaderTop4": {
