@@ -3,6 +3,7 @@
 import { LanguageDialog } from "@/components/language-dialog";
 import Inner from "@/components/layout/Inner";
 import { LoginAlertDialog } from "@/components/login-alert-dialog";
+import LogoutButton from "@/components/logout-button";
 import { Input } from "@/components/ui/input";
 import { Link } from "@/i18n/navigation";
 import { SearchIcon } from "lucide-react";
@@ -46,6 +47,8 @@ const HeaderTop = ({ inputRef }: HeaderTopProps) => {
             <LanguageDialog />
             <LoginAlertDialog />
           </div>
+
+          <LogoutButton />
         </div>
       </Inner>
     </header>
