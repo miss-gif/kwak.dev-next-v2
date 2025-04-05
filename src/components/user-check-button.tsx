@@ -11,8 +11,10 @@ export default function UserCheckButton() {
     } = await supabase.auth.getUser();
 
     if (error || !user) {
+      alert("로그인되지 않음");
       console.log("로그인되지 않음", error);
     } else {
+      alert("로그인됨");
       console.log("유저 정보:", user);
     }
   };
