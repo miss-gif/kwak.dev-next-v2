@@ -181,18 +181,18 @@
   "FooterButtom2": {
     "element1": {
       "label": "깃허브",
-      "title": "깃허브",
-      "href": "https://github.com/miss-gif"
+      "href": "https://github.com/miss-gif",
+      "iconUrl": "/github.svg"
     },
     "element2": {
       "label": "블로그",
-      "title": "블로그",
-      "href": "https://kwak-blog.vercel.app"
+      "href": "https://kwak-blog.vercel.app",
+      "iconUrl": "/google.svg"
     },
     "element3": {
       "label": "노션",
-      "title": "노션",
-      "href": "/"
+      "href": "/",
+      "iconUrl": "/kakao.svg"
     }
   }
 }

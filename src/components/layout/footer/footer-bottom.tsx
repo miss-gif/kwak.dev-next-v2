@@ -2,6 +2,7 @@ import Inner from "@/components/layout/Inner";
 import { Button } from "@/components/ui/button";
 import { Link } from "@/i18n/navigation";
 import { getTranslations } from "next-intl/server";
+import Image from "next/image";
 import React from "react";
 
 const FooterBottom = async () => {
@@ -13,7 +14,7 @@ const FooterBottom = async () => {
 
   return (
     <Inner>
-      <div className="flex flex-col md:flex-row justify-between items-center py-2">
+      <div className="flex flex-col md:flex-row justify-between items-end py-2">
         <div className="grid gap-4">
           <h1 className="text-lg font-bold">{t1("logo")}</h1>
           <div className="space-y-1">
@@ -38,10 +39,19 @@ const FooterBottom = async () => {
           {keys2.map((key) => (
             <div key={t2(`${key}.label`)}>
               <Link
+                target="_blank"
+                rel="noopener noreferrer"
                 href={t2(`${key}.href`)}
-                className="text-sm text-blue-400 hover:underline"
+                className="text-sm text-blue-400 hover:underline p-2 bg-gray-500 block rounded-full"
               >
-                {t2(`${key}.title`)}
+                <Image
+                  className="dark:invert"
+                  src={t2(`${key}.iconUrl`)}
+                  alt="Next.js logo"
+                  width={28}
+                  height={28}
+                  priority
+                />
               </Link>
             </div>
           ))}
