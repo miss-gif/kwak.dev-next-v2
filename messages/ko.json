@@ -68,7 +68,7 @@
     },
     "element2": {
       "label": "findUser",
-      "title": "아이디 / 비밀번호 찾기",
+      "title": "아이디 / 비밀번호를 잊으셨나요?",
       "href": "/signin/find-user"
     }
   },
@@ -76,12 +76,12 @@
     "element1": {
       "label": "kakao",
       "title": "Kakao",
-      "href": "/"
+      "href": "/Kakao"
     },
     "element2": {
       "label": "google",
       "title": "Google",
-      "href": "/"
+      "href": "/Kakao"
     }
   },
   "HeaderTop4": {
