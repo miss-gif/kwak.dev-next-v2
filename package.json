@@ -44,6 +44,7 @@
     "firebase": "^11.5.0",
     "jotai": "^2.12.2",
     "js-cookie": "^3.0.5",
+    "lightningcss": "^1.29.3",
     "lowlight": "^3.3.0",
     "lucide-react": "^0.487.0",
     "motion": "^12.6.3",
