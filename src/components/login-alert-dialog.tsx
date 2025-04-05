@@ -21,7 +21,7 @@ export function LoginAlertDialog() {
         <Button variant="default">{t1("login")}</Button>
       </AlertDialogTrigger>
       <AlertDialogContent className="max-w-md p-6 rounded-xl">
-        <AlertDialogHeader className="mb-6">
+        <AlertDialogHeader className="mb-6 sr-only">
           <AlertDialogTitle className="text-center text-5xl font-semibold">
             Kwak.dev
           </AlertDialogTitle>

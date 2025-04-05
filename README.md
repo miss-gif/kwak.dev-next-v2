@@ -27,3 +27,18 @@
   - 클라이언트에서 상태(State)로 관리 가능
   - API 요청 없이도 언어 전환 가능 (캐싱 & 성능 최적화)
   - 서버 액션을 활용하면 다국어 데이터 요청도 최적화 가능
+
+---
+
+## Vercel 배포 중 발생 에러
+
+1. cannot find module '@tailwindcss/oxide-linux-arm64-gnu'
+
+해결방법 : package.json 에서 아래 코드 추가
+
+```
+  "optionalDependencies": {
+    "@tailwindcss/oxide-linux-x64-gnu": "^4",
+    "lightningcss-linux-x64-gnu": "^1.29.1"
+  }
+```
