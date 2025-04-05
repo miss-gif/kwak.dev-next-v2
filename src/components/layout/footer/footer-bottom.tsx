@@ -45,12 +45,11 @@ const FooterBottom = async () => {
                 className="text-sm text-blue-400 hover:underline p-2 bg-gray-500 block rounded-full"
               >
                 <Image
-                  className="dark:invert"
                   src={t2(`${key}.iconUrl`)}
-                  alt="Next.js logo"
+                  alt={t2(`${key}.label`)}
                   width={28}
                   height={28}
-                  priority
+                  style={{ width: 28, height: 28 }}
                 />
               </Link>
             </div>
