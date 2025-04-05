@@ -1,5 +1,6 @@
 "use client";
 
+import { Button } from "@/components/ui/button";
 import { supabase } from "@/utils/supabase/client";
 
 export default function UserCheckButton() {
@@ -16,5 +17,5 @@ export default function UserCheckButton() {
     }
   };
 
-  return <button onClick={handleClick}>유저 정보 조회</button>;
+  return <Button onClick={handleClick}>user 조회</Button>;
 }

@@ -5,6 +5,7 @@ import Inner from "@/components/layout/Inner";
 import { LoginAlertDialog } from "@/components/login-alert-dialog";
 import LogoutButton from "@/components/logout-button";
 import { Input } from "@/components/ui/input";
+import UserCheckButton from "@/components/user-check-button";
 import { Link } from "@/i18n/navigation";
 import { SearchIcon } from "lucide-react";
 import { useTranslations } from "next-intl";
@@ -49,6 +50,7 @@ const HeaderTop = ({ inputRef }: HeaderTopProps) => {
           </div>
 
           <LogoutButton />
+          <UserCheckButton />
         </div>
       </Inner>
     </header>
