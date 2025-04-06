@@ -3,9 +3,9 @@
 import SignIn from "@/app/[locale]/test/auth/SignIn";
 import SignUp from "@/app/[locale]/test/auth/SignUp";
 import Inner from "@/components/layout/Inner";
-import LogoutButton from "@/components/logout-button";
+import LogoutButton from "@/components/auth/logout-button";
 import { Button } from "@/components/ui/button";
-import UserCheckButton from "@/components/user-check-button";
+import UserCheckButton from "@/components/auth/user-check-button";
 import { Link } from "@/i18n/navigation";
 
 export default function Page() {

@@ -1,4 +1,4 @@
-import SignupForm from "@/components/signup-form";
+import SignupForm from "@/components/auth/signup-form";
 import { Link } from "@/i18n/navigation";
 
 export default function Page() {
