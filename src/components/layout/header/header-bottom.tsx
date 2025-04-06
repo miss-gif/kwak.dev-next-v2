@@ -40,9 +40,6 @@ const HeaderBottom = ({ focusInput }: { focusInput: () => void }) => {
               );
             })}
           </nav>
-          <Link href={"/notFound"}>notFound</Link>
-          <Link href={"/auth/login"}>login</Link>
-          <Link href={"/test"}>test</Link>
         </div>
       </Inner>
     </div>
