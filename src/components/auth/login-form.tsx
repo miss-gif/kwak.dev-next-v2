@@ -1,17 +1,12 @@
 "use client";
 
+import { AuthHeader } from "@/components/auth/auth-header";
+import { CustomFormField } from "@/components/auth/form-field";
+import { SocialLoginButtons } from "@/components/auth/social-login-buttons";
 import { Button } from "@/components/ui/button";
-import {
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
+import { Form } from "@/components/ui/form";
 import { Link } from "@/i18n/navigation";
-import { signInWithGoogle, signInWithKakao } from "@/utils/supabase/actions";
+import { handleOAuthLogin } from "@/utils/auth/oauth-login";
 import { createClient } from "@/utils/supabase/client";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useTranslations } from "next-intl";
@@ -29,8 +24,6 @@ const formSchema = z.object({
 const LoginForm = () => {
   const t2 = useTranslations("HeaderTop2");
   const t4 = useTranslations("HeaderTop4");
-  const b1 = useTranslations("kakaoButton");
-  const b2 = useTranslations("googleButton");
   const keys1 = ["element1"] as const;
   const keys2 = ["element2"] as const;
 
@@ -40,7 +33,7 @@ const LoginForm = () => {
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
-    defaultValues: { email: "", password: "" },
+    defaultValues: { email: "name@example.com", password: "name@example.com" },
   });
 
   const handleSubmit = async (values: z.infer<typeof formSchema>) => {
@@ -73,73 +66,28 @@ const LoginForm = () => {
     }
   };
 
-  const handleOAuthLogin = async (provider: "google" | "kakao") => {
-    try {
-      setIsLoading(true);
-      provider === "google"
-        ? await signInWithGoogle()
-        : await signInWithKakao();
-      toast.success("로그인 성공!", {
-        description: "메인 페이지로 이동합니다.",
-      });
-      router.push("/");
-    } catch (error: any) {
-      toast.error("로그인 실패", {
-        description: `${
-          provider === "google" ? "Google" : "Kakao"
-        } 로그인 중 오류가 발생했습니다.`,
-      });
-    } finally {
-      setIsLoading(false);
-    }
-  };
-
   return (
     <div>
       {/* Header */}
-      <div className="pb-10 space-y-2">
-        <h1 className="text-center text-5xl font-semibold">Kwak.dev</h1>
-        <p className="text-center text-xs text-gray-500">
-          계정에 로그인하고 더 많은 기능을 이용해보세요.
-        </p>
-      </div>
+      <AuthHeader
+        title="Kwak.dev"
+        description="계정에 로그인하고 더 많은 기능을 이용해보세요."
+      />
 
       {/* Login Form */}
       <Form {...form}>
         <form onSubmit={form.handleSubmit(handleSubmit)} className="space-y-2">
-          <FormField
+          <CustomFormField
             control={form.control}
             name="email"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel className="text-xs">{t4("email")}</FormLabel>
-                <FormControl>
-                  <Input
-                    placeholder="name@example.com"
-                    {...field}
-                    className="bg-gray-50 border border-gray-200 text-sm"
-                  />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
+            label={t4("email")}
+            placeholder="name@example.com"
           />
-          <FormField
+          <CustomFormField
             control={form.control}
             name="password"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel className="text-xs">{t4("password")}</FormLabel>
-                <FormControl>
-                  <Input
-                    type="password"
-                    {...field}
-                    className="bg-gray-50 border border-gray-200 text-sm"
-                  />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
+            label={t4("password")}
+            type="password"
           />
           <Button
             type="submit"
@@ -171,24 +119,12 @@ const LoginForm = () => {
           <span className="mx-4 text-sm text-gray-400">{t4("easyLogin")}</span>
           <div className="flex-grow h-px bg-gray-200"></div>
         </div>
-        <div className="text-center">
-          <div className="flex flex-col space-y-3 w-full">
-            <Button
-              variant="outline"
-              onClick={() => handleOAuthLogin("kakao")}
-              disabled={isLoading}
-            >
-              {b1("login")}
-            </Button>
-            <Button
-              variant="outline"
-              onClick={() => handleOAuthLogin("google")}
-              disabled={isLoading}
-            >
-              {b2("login")}
-            </Button>
-          </div>
-        </div>
+        <SocialLoginButtons
+          isLoading={isLoading}
+          handleOAuthLogin={(provider) =>
+            handleOAuthLogin(provider, setIsLoading)
+          }
+        />
       </div>
 
       {/* 이미 계정이 있으신가요 */}
@@ -206,7 +142,6 @@ const LoginForm = () => {
           ))}
         </span>
       </div>
-      {message && <div className="text-red-500">{message}</div>}
     </div>
   );
 };

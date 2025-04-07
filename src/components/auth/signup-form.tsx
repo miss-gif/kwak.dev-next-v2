@@ -1,16 +1,11 @@
 "use client";
 
+import { AuthHeader } from "@/components/auth/auth-header";
+import { CustomFormField } from "@/components/auth/form-field";
+import { SocialLoginButtons } from "@/components/auth/social-login-buttons";
 import { Button } from "@/components/ui/button";
-import {
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
-import { signInWithGoogle, signInWithKakao } from "@/utils/supabase/actions";
+import { Form } from "@/components/ui/form";
+import { handleOAuthLogin } from "@/utils/auth/oauth-login";
 import { createClient } from "@/utils/supabase/client";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useTranslations } from "next-intl";
@@ -23,12 +18,10 @@ import { z } from "zod";
 
 const formSchema = z
   .object({
-    email: z.string().email({
-      message: "유효한 이메일을 입력해주세요.",
-    }),
-    password: z.string().min(6, {
-      message: "비밀번호는 최소 6자 이상이어야 합니다.",
-    }),
+    email: z.string().email({ message: "유효한 이메일을 입력해주세요." }),
+    password: z
+      .string()
+      .min(6, { message: "비밀번호는 최소 6자 이상이어야 합니다." }),
     confirmPassword: z.string(),
   })
   .refine((data) => data.password === data.confirmPassword, {
@@ -39,11 +32,8 @@ const formSchema = z
 const SignupForm = () => {
   const t2 = useTranslations("HeaderTop2");
   const t4 = useTranslations("HeaderTop4");
-  const b1 = useTranslations("kakaoButton");
-  const b2 = useTranslations("googleButton");
   const keys3 = ["element3"] as const;
 
-  const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
   const [message, setMessage] = useState<string | null>(null); // 메시지 상태 추가
 
@@ -67,8 +57,6 @@ const SignupForm = () => {
         emailRedirectTo: auth_callback_url,
       },
     });
-
-    console.log(data);
 
     if (error) {
       setMessage(`회원가입 실패: ${error.message}`);
@@ -97,89 +85,33 @@ const SignupForm = () => {
     }
   }
 
-  const handleOAuthLogin = async (provider: "google" | "kakao") => {
-    try {
-      setIsLoading(true);
-      provider === "google"
-        ? await signInWithGoogle()
-        : await signInWithKakao();
-      toast.success("로그인 성공!", {
-        description: "메인 페이지로 이동합니다.",
-      });
-      router.push("/");
-    } catch (error: any) {
-      toast.error("로그인 실패", {
-        description: `${
-          provider === "google" ? "Google" : "Kakao"
-        } 로그인 중 오류가 발생했습니다.`,
-      });
-    } finally {
-      setIsLoading(false);
-    }
-  };
-
   return (
     <div>
       {/* 헤더 */}
-      <div className="pb-10 space-y-2">
-        <div className="text-center text-5xl font-semibold">Kwak.dev</div>
-        <div className="text-center text-xs text-gray-500">
-          회원가입하고 더 많은 기능을 이용하세요.
-        </div>
-      </div>
+      <AuthHeader
+        title="Kwak.dev"
+        description="회원가입하고 더 많은 기능을 이용하세요."
+      />
 
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-2">
-          <FormField
+          <CustomFormField
             control={form.control}
             name="email"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel className="text-xs">{t4("email")}</FormLabel>
-                <FormControl>
-                  <Input
-                    placeholder="name@example.com"
-                    {...field}
-                    className="bg-gray-50 border border-gray-200 text-sm"
-                  />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
+            label={t4("email")}
+            placeholder="name@example.com"
           />
-          <FormField
+          <CustomFormField
             control={form.control}
             name="password"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel className="text-xs">{t4("password")}</FormLabel>
-                <FormControl>
-                  <Input
-                    type="password"
-                    {...field}
-                    className="bg-gray-50 border border-gray-200 text-sm"
-                  />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
+            label={t4("password")}
+            type="password"
           />
-          <FormField
+          <CustomFormField
             control={form.control}
             name="confirmPassword"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel className="text-xs">{t4("passwordCheck")}</FormLabel>
-                <FormControl>
-                  <Input
-                    type="password"
-                    {...field}
-                    className="bg-gray-50 border border-gray-200 text-sm"
-                  />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
+            label={t4("passwordCheck")}
+            type="password"
           />
           <Button
             type="submit"
@@ -199,24 +131,12 @@ const SignupForm = () => {
           <div className="flex-grow h-px bg-gray-200"></div>
         </div>
 
-        <div className="text-center">
-          <div className="flex flex-col space-y-3 w-full">
-            <Button
-              variant="outline"
-              onClick={() => handleOAuthLogin("kakao")}
-              disabled={isLoading}
-            >
-              {b1("login")}
-            </Button>
-            <Button
-              variant="outline"
-              onClick={() => handleOAuthLogin("google")}
-              disabled={isLoading}
-            >
-              {b2("login")}
-            </Button>
-          </div>
-        </div>
+        <SocialLoginButtons
+          isLoading={isLoading}
+          handleOAuthLogin={(provider) =>
+            handleOAuthLogin(provider, setIsLoading)
+          }
+        />
       </div>
 
       {/* 이미 계정이 있으신가요 */}
@@ -233,7 +153,6 @@ const SignupForm = () => {
             </Link>
           ))}
         </span>
-        {message && <div className="text-red-500">{message}</div>}
       </div>
     </div>
   );
