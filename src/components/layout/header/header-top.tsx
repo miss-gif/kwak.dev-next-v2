@@ -1,13 +1,13 @@
 "use client";
 
 import { LanguageDialog } from "@/components/language-dialog";
+import HeaderSearchbar from "@/components/layout/header/header-searchbar";
+import MoHeaderTop from "@/components/layout/header/mo-header-top";
 import Inner from "@/components/layout/Inner";
 import { LoginAlertDialog } from "@/components/login-alert-dialog";
 import LoginPopover from "@/components/login-popover";
-import { Input } from "@/components/ui/input";
 import { Link } from "@/i18n/navigation";
 import { createClient } from "@/utils/supabase/client";
-import { SearchIcon } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { useEffect, useMemo, useState } from "react";
 
@@ -32,45 +32,47 @@ const HeaderTop = ({ inputRef }: HeaderTopProps) => {
     });
   }, []);
 
+  const PcHeader = () => {
+    return (
+      <div className="hidden md:flex items-center justify-between gap-4">
+        <div className="flex items-center gap-4 w-full">
+          <h1 className="text-xl font-bold">
+            <Link href="/">Kwak.dev</Link>
+          </h1>
+
+          <div className="flex gap-2">
+            {keys1.map((key) => (
+              <div key={key} className="font-semibold">
+                <Link href={t1(`${key}.href`)}>{t1(`${key}.title`)}</Link>
+              </div>
+            ))}
+          </div>
+
+          <HeaderSearchbar inputRef={inputRef} />
+        </div>
+
+        <div className="flex items-center gap-2">
+          <LanguageDialog />
+          {!isLoggedIn ? (
+            <LoginAlertDialog />
+          ) : (
+            <LoginPopover email={data.email} setIsLoggedIn={setIsLoggedIn} />
+          )}
+        </div>
+      </div>
+    );
+  };
+
   return (
     <header>
       <Inner>
-        <div className="flex items-center justify-between gap-4">
-          <div className="flex items-center gap-4 w-full">
-            <h1 className="text-xl font-bold">
-              <Link href="/">Kwak.dev</Link>
-            </h1>
-
-            <div className="flex gap-2">
-              {keys1.map((key) => (
-                <div key={key} className="font-semibold">
-                  <Link href={t1(`${key}.href`)}>{t1(`${key}.title`)}</Link>
-                </div>
-              ))}
-            </div>
-
-            <div className="flex-1 relative flex items-center justify-end">
-              <Input
-                ref={inputRef}
-                className="w-full pr-10"
-                placeholder="현재 기능 점검 중입니다."
-              />
-              <SearchIcon
-                size={20}
-                className="absolute right-3 text-muted-foreground"
-              />
-            </div>
-          </div>
-
-          <div className="flex items-center gap-2">
-            <LanguageDialog />
-            {!isLoggedIn ? (
-              <LoginAlertDialog />
-            ) : (
-              <LoginPopover email={data.email} setIsLoggedIn={setIsLoggedIn} />
-            )}
-          </div>
-        </div>
+        <PcHeader />
+        <MoHeaderTop
+          isLoggedIn={isLoggedIn}
+          setIsLoggedIn={setIsLoggedIn}
+          data={data}
+          inputRef={inputRef}
+        />
       </Inner>
     </header>
   );
