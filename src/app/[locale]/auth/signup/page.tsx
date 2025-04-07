@@ -1,22 +1,35 @@
+"use client";
+
+import AuthEasyLogin from "@/app/[locale]/auth/components/auth-easy-login";
+import AuthFooter from "@/app/[locale]/auth/components/auth-footer";
+import { AuthHeader } from "@/app/[locale]/auth/components/auth-header";
 import SignupForm from "@/components/auth/signup-form";
 import { Link } from "@/i18n/navigation";
+import { useTranslations } from "next-intl";
+import { useState } from "react";
 
 export default function Page() {
-  return (
-    <div className="flex w-full justify-center">
-      <div className="hidden h-screen w-1/2 bg-gray-950 text-white md:block">
-        <div className="flex h-screen flex-col justify-between p-6">
-          <h1>
-            <Link href="/">Kwak.dev</Link>
-          </h1>
-        </div>
-      </div>
+  const [isLoading, setIsLoading] = useState(false);
 
-      <div className="w-full md:w-1/2 flex justify-center items-center p-6">
-        <div className="flex-1 max-w-xs">
-          <SignupForm />
-        </div>
-      </div>
-    </div>
+  const t2 = useTranslations("HeaderTop2");
+  const t4 = useTranslations("HeaderTop4");
+  const easySignup = t4("easySignup");
+  const keys3 = ["element3"] as const;
+  const yesUser = t4("yesUser");
+
+  return (
+    <>
+      <AuthHeader
+        title="Kwak.dev"
+        description="회원가입하고 더 많은 기능을 이용하세요."
+      />
+      <SignupForm />
+      <AuthEasyLogin
+        isLoading={isLoading}
+        setIsLoading={setIsLoading}
+        text={easySignup}
+      />
+      <AuthFooter text={yesUser} el={keys3} link={t2} />
+    </>
   );
 }

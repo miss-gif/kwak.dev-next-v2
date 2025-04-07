@@ -1,6 +1,6 @@
 "use client";
 
-import { AuthHeader } from "@/components/auth/auth-header";
+import { AuthHeader } from "@/app/[locale]/auth/components/auth-header";
 import { CustomFormField } from "@/components/auth/form-field";
 import { SocialLoginButtons } from "@/components/auth/social-login-buttons";
 import { Button } from "@/components/ui/button";
@@ -87,12 +87,6 @@ const SignupForm = () => {
 
   return (
     <div>
-      {/* 헤더 */}
-      <AuthHeader
-        title="Kwak.dev"
-        description="회원가입하고 더 많은 기능을 이용하세요."
-      />
-
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-2">
           <CustomFormField
@@ -122,38 +116,6 @@ const SignupForm = () => {
           </Button>
         </form>
       </Form>
-
-      {/* 간편 회원가입 */}
-      <div>
-        <div className="flex items-center my-4">
-          <div className="flex-grow h-px bg-gray-200"></div>
-          <span className="mx-4 text-xs">{t4("easySignup")}</span>
-          <div className="flex-grow h-px bg-gray-200"></div>
-        </div>
-
-        <SocialLoginButtons
-          isLoading={isLoading}
-          handleOAuthLogin={(provider) =>
-            handleOAuthLogin(provider, setIsLoading)
-          }
-        />
-      </div>
-
-      {/* 이미 계정이 있으신가요 */}
-      <div className="text-center text-sm mt-4">
-        {t4("yesUser")}
-        <span className="ml-1 font-medium">
-          {keys3.map((key) => (
-            <Link
-              key={t2(`${key}.label`)}
-              href={t2(`${key}.href`)}
-              className="font-semibold hover:underline text-xs"
-            >
-              {t2(`${key}.title`)}
-            </Link>
-          ))}
-        </span>
-      </div>
     </div>
   );
 };
