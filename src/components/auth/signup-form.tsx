@@ -11,6 +11,7 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { signInWithGoogle, signInWithKakao } from "@/utils/supabase/actions";
+import { createClient } from "@/utils/supabase/client";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useTranslations } from "next-intl";
 import Link from "next/link";
@@ -40,12 +41,11 @@ const SignupForm = () => {
   const t4 = useTranslations("HeaderTop4");
   const b1 = useTranslations("kakaoButton");
   const b2 = useTranslations("googleButton");
-  const keys2 = ["element2"] as const;
   const keys3 = ["element3"] as const;
-  const keys4 = ["element1", "element2"] as const;
 
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
+  const [message, setMessage] = useState<string | null>(null); // 메시지 상태 추가
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -56,17 +56,38 @@ const SignupForm = () => {
     },
   });
 
-  async function onSubmit(values: z.infer<typeof formSchema>) {
-    try {
-      setIsLoading(true);
+  const auth_callback_url = `${process.env.NEXT_PUBLIC_SITE_URL}/auth/callback`;
 
+  const handleSignUp = async (email: string, password: string) => {
+    const supabase = await createClient();
+    const { data, error } = await supabase.auth.signUp({
+      email,
+      password,
+      options: {
+        emailRedirectTo: auth_callback_url,
+      },
+    });
+
+    console.log(data);
+
+    if (error) {
+      setMessage(`회원가입 실패: ${error.message}`);
+      toast.error("회원가입 실패", {
+        description: error.message,
+      });
+    } else {
+      setMessage("회원가입 성공! 이메일 인증을 확인하세요.");
       toast.success("회원가입 성공!", {
         description: "이메일 인증을 완료해주세요.",
       });
+    }
+  };
 
-      console.log("회원가입 성공", values);
-
-      router.push("/auth/signup");
+  async function onSubmit(values: z.infer<typeof formSchema>) {
+    try {
+      setIsLoading(true);
+      await handleSignUp(values.email, values.password); // handleSignUp 호출
+      // router.push("/auth/signup"); // 회원가입 성공 후 리디렉션 제거
     } catch (error) {
       toast.error("회원가입 실패", {
         description: "다시 시도해주세요.",
@@ -76,44 +97,21 @@ const SignupForm = () => {
     }
   }
 
-  const handleGoogleLogin = async () => {
+  const handleOAuthLogin = async (provider: "google" | "kakao") => {
     try {
       setIsLoading(true);
-      await signInWithGoogle();
-      toast.success("구글 로그인 성공!", {
+      provider === "google"
+        ? await signInWithGoogle()
+        : await signInWithKakao();
+      toast.success("로그인 성공!", {
         description: "메인 페이지로 이동합니다.",
       });
-
-      alert("구글 로그인 성공");
-      console.log("구글 로그인 성공");
-
       router.push("/");
-      router.refresh();
-    } catch (error) {
-      toast.error("구글 로그인 실패", {
-        description: "Google 로그인 중 오류가 발생했습니다.",
-      });
-    } finally {
-      setIsLoading(false);
-    }
-  };
-
-  const handleKakaoLogin = async () => {
-    try {
-      setIsLoading(true);
-      await signInWithKakao();
-      toast.success("카카오 로그인 성공!", {
-        description: "메인 페이지로 이동합니다.",
-      });
-
-      alert("카카오 로그인 성공");
-      console.log("카카오 로그인 성공");
-
-      router.push("/");
-      router.refresh();
-    } catch (error) {
-      toast.error("카카오 로그인 실패", {
-        description: "Google 로그인 중 오류가 발생했습니다.",
+    } catch (error: any) {
+      toast.error("로그인 실패", {
+        description: `${
+          provider === "google" ? "Google" : "Kakao"
+        } 로그인 중 오류가 발생했습니다.`,
       });
     } finally {
       setIsLoading(false);
@@ -183,28 +181,15 @@ const SignupForm = () => {
               </FormItem>
             )}
           />
-          {isLoading ? (
-            <Button type="submit" className="w-full py-5" disabled={isLoading}>
-              로딩중
-            </Button>
-          ) : (
-            <Button className="w-full py-5 mt-2">{t4("signup")}</Button>
-          )}
+          <Button
+            type="submit"
+            className="w-full py-5 mt-2"
+            disabled={isLoading}
+          >
+            {isLoading ? "로딩중" : t4("signup")}
+          </Button>
         </form>
       </Form>
-
-      {/* 아이디 비밀번호 잊으셨나요 */}
-      <div className="flex justify-center space-x-2 text-xs text-gray-400 mt-4">
-        {keys2.map((key) => (
-          <Link
-            key={t2(`${key}.label`)}
-            href={t2(`${key}.href`)}
-            className="hover:underline"
-          >
-            {t2(`${key}.title`)}
-          </Link>
-        ))}
-      </div>
 
       {/* 간편 회원가입 */}
       <div>
@@ -217,18 +202,18 @@ const SignupForm = () => {
         <div className="text-center">
           <div className="flex flex-col space-y-3 w-full">
             <Button
-              variant={"outline"}
-              onClick={handleKakaoLogin}
+              variant="outline"
+              onClick={() => handleOAuthLogin("kakao")}
               disabled={isLoading}
             >
-              {b1("signup")}
+              {b1("login")}
             </Button>
             <Button
-              variant={"outline"}
-              onClick={handleGoogleLogin}
+              variant="outline"
+              onClick={() => handleOAuthLogin("google")}
               disabled={isLoading}
             >
-              {b2("signup")}
+              {b2("login")}
             </Button>
           </div>
         </div>
@@ -248,6 +233,7 @@ const SignupForm = () => {
             </Link>
           ))}
         </span>
+        {message && <div className="text-red-500">{message}</div>}
       </div>
     </div>
   );

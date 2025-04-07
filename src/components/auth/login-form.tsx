@@ -12,6 +12,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { Link } from "@/i18n/navigation";
 import { signInWithGoogle, signInWithKakao } from "@/utils/supabase/actions";
+import { createClient } from "@/utils/supabase/client";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useTranslations } from "next-intl";
 import { useRouter } from "next/navigation";
@@ -35,6 +36,7 @@ const LoginForm = () => {
 
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
+  const [message, setMessage] = useState<string | null>(null);
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -44,14 +46,27 @@ const LoginForm = () => {
   const handleSubmit = async (values: z.infer<typeof formSchema>) => {
     try {
       setIsLoading(true);
-      toast.success("로그인 성공!", {
-        description: "메인 페이지로 이동합니다.",
+      const supabase = await createClient();
+      const { error } = await supabase.auth.signInWithPassword({
+        email: values.email,
+        password: values.password,
       });
-      router.push("/auth/login");
-      router.refresh();
-    } catch {
+
+      if (error) {
+        setMessage(`로그인 실패: ${error.message}`);
+        toast.error("로그인 실패", {
+          description: "이메일과 비밀번호를 확인해주세요.",
+        });
+      } else {
+        toast.success("로그인 성공!", {
+          description: "메인 페이지로 이동합니다.",
+        });
+        router.push("/");
+        router.refresh();
+      }
+    } catch (error) {
       toast.error("로그인 실패", {
-        description: "이메일과 비밀번호를 확인해주세요.",
+        description: "알 수 없는 오류가 발생했습니다.",
       });
     } finally {
       setIsLoading(false);
@@ -67,9 +82,12 @@ const LoginForm = () => {
       toast.success("로그인 성공!", {
         description: "메인 페이지로 이동합니다.",
       });
-    } catch {
+      router.push("/");
+    } catch (error: any) {
       toast.error("로그인 실패", {
-        description: `${provider === "google" ? "Google" : "Kakao"} 로그인 중 오류가 발생했습니다.`,
+        description: `${
+          provider === "google" ? "Google" : "Kakao"
+        } 로그인 중 오류가 발생했습니다.`,
       });
     } finally {
       setIsLoading(false);
@@ -188,6 +206,7 @@ const LoginForm = () => {
           ))}
         </span>
       </div>
+      {message && <div className="text-red-500">{message}</div>}
     </div>
   );
 };
