@@ -1,6 +1,6 @@
 "use client";
 
-import { supabase } from "@/utils/supabase/client";
+import { createClient } from "@/utils/supabase/client";
 import { useState } from "react";
 
 function SignIn() {
@@ -9,6 +9,7 @@ function SignIn() {
   const [message, setMessage] = useState("");
 
   const handleSignIn = async () => {
+    const supabase = await createClient();
     const { data, error } = await supabase.auth.signInWithPassword({
       email,
       password,

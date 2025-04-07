@@ -1,6 +1,6 @@
 "use client";
 
-import { supabase } from "@/utils/supabase/client";
+import { createClient } from "@/utils/supabase/client";
 import { useState } from "react";
 
 function SignUp() {
@@ -11,6 +11,7 @@ function SignUp() {
   const auth_callback_url = `${process.env.SITE_URL}/auth/callback`;
 
   const handleSignUp = async () => {
+    const supabase = await createClient();
     const { data, error } = await supabase.auth.signUp({
       email,
       password,

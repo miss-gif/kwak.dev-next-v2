@@ -1,9 +1,10 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import { supabase } from "@/utils/supabase/client";
+import { createClient } from "@/utils/supabase/client";
 
 export default function UserCheckButton() {
+  const supabase = createClient();
   const handleClick = async () => {
     const {
       data: { user },
