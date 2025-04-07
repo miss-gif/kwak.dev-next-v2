@@ -2,10 +2,9 @@
 
 import SignIn from "@/app/[locale]/test/auth/SignIn";
 import SignUp from "@/app/[locale]/test/auth/SignUp";
-import Inner from "@/components/layout/Inner";
-import LogoutButton from "@/components/auth/logout-button";
-import { Button } from "@/components/ui/button";
 import UserCheckButton from "@/components/auth/user-check-button";
+import Inner from "@/components/layout/Inner";
+import { Button } from "@/components/ui/button";
 import { Link } from "@/i18n/navigation";
 
 export default function Page() {
@@ -17,7 +16,7 @@ export default function Page() {
 
       <Inner>
         <header className="flex gap-2 py-4">
-          <LogoutButton />
+          {/* <LogoutButton /> */}
           <UserCheckButton />
           <Button asChild>
             <Link href={"/auth/callback"}>리디렉션</Link>
