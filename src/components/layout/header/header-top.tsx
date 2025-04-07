@@ -1,7 +1,5 @@
 "use client";
 
-import LogoutButton from "@/components/auth/logout-button";
-import UserCheckButton from "@/components/auth/user-check-button";
 import { LanguageDialog } from "@/components/language-dialog";
 import Inner from "@/components/layout/Inner";
 import { LoginAlertDialog } from "@/components/login-alert-dialog";
@@ -23,11 +21,13 @@ const HeaderTop = ({ inputRef }: HeaderTopProps) => {
 
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const supabase = useMemo(() => createClient(), []);
+  const [data, setData] = useState({ email: "" });
 
   useEffect(() => {
     supabase.auth.getUser().then(({ data, error }) => {
       if (!error && data?.user) {
         setIsLoggedIn(true);
+        setData({ email: data.user.email || "" });
       }
     });
   }, []);
@@ -64,11 +64,12 @@ const HeaderTop = ({ inputRef }: HeaderTopProps) => {
 
           <div className="flex items-center gap-2">
             <LanguageDialog />
-            {!isLoggedIn ? <LoginAlertDialog /> : <LoginPopover />}
+            {!isLoggedIn ? (
+              <LoginAlertDialog />
+            ) : (
+              <LoginPopover email={data.email} setIsLoggedIn={setIsLoggedIn} />
+            )}
           </div>
-
-          <LogoutButton />
-          <UserCheckButton />
         </div>
       </Inner>
     </header>

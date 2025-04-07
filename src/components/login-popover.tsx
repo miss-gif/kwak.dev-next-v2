@@ -1,3 +1,4 @@
+import LogoutButton from "@/components/auth/logout-button";
 import { Button } from "@/components/ui/button";
 import {
   Popover,
@@ -9,11 +10,12 @@ import Image from "next/image";
 
 interface Props {
   email: string;
-  point: number;
-  couponCount: number;
+  point?: number | null;
+  couponCount?: number | null;
+  setIsLoggedIn: (isLoggedIn: boolean) => void;
 }
 
-function LoginPopover({ email, point, couponCount }: Props) {
+function LoginPopover({ email, point, couponCount, setIsLoggedIn }: Props) {
   return (
     <Popover>
       <PopoverTrigger asChild>
@@ -29,9 +31,12 @@ function LoginPopover({ email, point, couponCount }: Props) {
 
       <PopoverContent className="w-72 md:w-80 p-3 bg-white border border-gray-200 rounded-md shadow-md z-10">
         <UserProfileSection email={email} />
-        <UserFinanceSection couponCount={couponCount} point={point} />
+        <UserFinanceSection
+          couponCount={(couponCount = 0)}
+          point={(point = 0)}
+        />
         <NavigationSection />
-        <LogoutButton />
+        <LogoutButton setIsLoggedIn={setIsLoggedIn} />
       </PopoverContent>
     </Popover>
   );
@@ -43,7 +48,7 @@ interface UserProfileSectionProps {
 
 function UserProfileSection({ email }: UserProfileSectionProps) {
   return (
-    <section className="mb-3 py-2 border-b border-gray-200">
+    <section className="py-1">
       <div className="flex items-center gap-2">
         <Image
           className="rounded-full"
@@ -67,14 +72,27 @@ interface UserFinanceSectionProps {
 }
 
 function UserFinanceSection({ couponCount, point }: UserFinanceSectionProps) {
+  const item = [
+    { label: "쿠폰", value: couponCount, quantity: "개" },
+    { label: "포인트", value: point, quantity: "pt" },
+  ];
+
   return (
-    <section className="flex justify-between text-sm text-gray-600 py-2 border-b border-gray-200 mb-3">
-      <div>
-        쿠폰 <span className="font-semibold">{couponCount}</span>개
-      </div>
-      <div>
-        포인트 <span className="font-semibold">{point}</span> pt
-      </div>
+    <section className="grid grid-cols-2 gap-1 text-sm py-2">
+      {item.map((item) => (
+        <div
+          key={item.label}
+          className="flex items-center justify-between bg-gray-200 rounded-xs p-2 text-xs"
+        >
+          <div className="font-semibold">{item.label}</div>
+          <div>
+            <span className="font-semibold text-green-500 px-1">
+              {item.value}
+            </span>
+            {item.quantity}
+          </div>
+        </div>
+      ))}
     </section>
   );
 }
@@ -101,14 +119,6 @@ function NavigationSection() {
         </Link>
       ))}
     </nav>
-  );
-}
-
-function LogoutButton() {
-  return (
-    <Button className="w-full bg-red-500 hover:bg-red-600 text-white text-sm font-medium py-2 transition-colors duration-200">
-      로그아웃
-    </Button>
   );
 }
 
