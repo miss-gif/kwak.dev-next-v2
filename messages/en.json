@@ -1,27 +1,24 @@
 {
   "Metadata": {
-    "title": "Kwak.dev-en",
-    "description": "English Metadata - description 테스트입니다. English Metadata - description 테스트입니다. English Metadata - description 테스트입니다. English Metadata - description 테스트입니다. English Metadata - description 테스트입니다. English Metadata - description 테스트입니다. English Metadata - description 테스트입니다. English Metadata - description 테스트입니다. English Metadata - description 테스트입니다. English Metadata - description 테스트입니다. English Metadata - description 테스트입니다. English Metadata - description 테스트입니다. English Metadata - description 테스트입니다. English Metadata - description 테스트입니다. English Metadata - description 테스트입니다. English Metadata - description 테스트입니다. English Metadata - description 테스트입니다. English Metadata - description 테스트입니다. English Metadata - description 테스트입니다. English Metadata - description 테스트입니다. English Metadata - description 테스트입니다. English Metadata - description 테스트입니다. English Metadata - description 테스트입니다. English Metadata - description 테스트입니다. English Metadata - description 테스트입니다. English Metadata - description 테스트입니다. English Metadata - description 테스트입니다. English Metadata - description 테스트입니다. ",
+    "title": "Kwak.dev",
+    "description": "Metadata description test.",
     "images": ["/thumbnail.png"]
   },
-
   "notFound": {
     "text1": "Page not found.",
-    "text2": "The page you are looking for doesn't exist or may have been moved.",
-    "text3": "Return to home"
+    "text2": "The page you are looking for does not exist or has been moved.",
+    "text3": "Back to home"
   },
-
   "LanguageDialog": {
-    "setting": "Language Settings",
-    "settingDescription": "언어를 선택하는 영역입니다.",
+    "setting": "Language settings",
+    "settingDescription": "This is the area to select a language.",
     "change": "Change",
     "languageName": {
-      "ko": "한국어",
+      "ko": "Korean",
       "en": "English",
-      "ja": "日本語"
+      "ja": "Japanese"
     }
   },
-
   "BannerTop1": {
     "element1": {
       "label": "website",
@@ -34,7 +31,6 @@
       "href": "/blog"
     }
   },
-
   "BannerTop2": {
     "element1": {
       "label": "contact",
@@ -47,7 +43,6 @@
       "href": "/admin"
     }
   },
-
   "HeaderTop1": {
     "element1": {
       "label": "introduction",
@@ -64,31 +59,39 @@
     "element1": {
       "label": "signUp",
       "title": "Sign Up",
-      "href": "/signup"
+      "href": "/auth/signup"
     },
     "element2": {
       "label": "findUser",
-      "title": "Find ID / Password",
+      "title": "Forgot your ID / password?",
       "href": "/signin/find-user"
+    },
+    "element3": {
+      "label": "login",
+      "title": "Log In",
+      "href": "/auth/login"
     }
   },
-  "HeaderTop3": {
-    "element1": {
-      "label": "kakao",
-      "title": "Kakao",
-      "href": "/"
-    },
-    "element2": {
-      "label": "google",
-      "title": "Google",
-      "href": "/"
-    }
+  "kakaoButton": {
+    "label": "kakao",
+    "login": "Continue with Kakao",
+    "signup": "Sign up with Kakao"
+  },
+  "googleButton": {
+    "label": "google",
+    "login": "Continue with Google",
+    "signup": "Sign up with Google"
   },
   "HeaderTop4": {
-    "login": "Login",
-    "easyLogin": "Easy Login",
+    "login": "Log In",
+    "easyLogin": "Easy Log In",
     "email": "Email",
-    "password": "Password"
+    "password": "Password",
+    "passwordCheck": "Password Check",
+    "signup": "Sign Up",
+    "easySignup": "Easy Sign Up",
+    "noUser": "Don't have an account?",
+    "yesUser": "Already have an account?"
   },
   "HeaderBottom1": {
     "element1": {
@@ -98,11 +101,10 @@
     },
     "element2": {
       "label": "todos",
-      "title": "To-dos",
+      "title": "Todos",
       "href": "/todos"
     }
   },
-
   "FooterTop1": {
     "element1": {
       "label": "introduction",
@@ -135,7 +137,7 @@
     },
     "element2": {
       "label": "questions",
-      "title": "questions",
+      "title": "Questions",
       "href": "/service/questions"
     }
   },
@@ -153,34 +155,32 @@
       "href": "/info"
     }
   },
-
   "FooterButtom1": {
     "logo": "Kwak.dev",
-    "text1": "Innovation starts with every crew's question.",
-    "text2": "To create a world unimaginable without AI, we need many unexpected questions.",
-    "text3": "We are waiting for crew members who will ask new questions that can change the world.",
+    "text1": "Trying new technologies and solving ideas with code.",
+    "text2": "Record and share not only completed works but also challenges and mistakes.",
+    "text3": "Check out the free journey to become a better developer.",
     "element1": {
       "label": "apply",
-      "title": "Apply",
-      "href": "/"
+      "title": "Check it out",
+      "href": "https://github.com/miss-gif"
     }
   },
-
   "FooterButtom2": {
     "element1": {
-      "label": "GitHub",
-      "title": "GitHub",
-      "href": "/"
+      "label": "github",
+      "href": "https://github.com/miss-gif",
+      "iconUrl": "/github.svg"
     },
     "element2": {
-      "label": "Blog",
-      "title": "Blog",
-      "href": "/"
+      "label": "blog",
+      "href": "https://kwak-blog.vercel.app",
+      "iconUrl": "/google.svg"
     },
     "element3": {
-      "label": "Notion",
-      "title": "Notion",
-      "href": "/"
+      "label": "notion",
+      "href": "/",
+      "iconUrl": "/kakao.svg"
     }
   }
 }

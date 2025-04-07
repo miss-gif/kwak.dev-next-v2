@@ -1,186 +1,186 @@
 {
   "Metadata": {
     "title": "Kwak.dev-ja",
-    "description": "日本語 Metadata - description 테스트입니다. 日本語 Metadata - description 테스트입니다. 日本語 Metadata - description 테스트입니다. 日本語 Metadata - description 테스트입니다. 日本語 Metadata - description 테스트입니다. 日本語 Metadata - description 테스트입니다. 日本語 Metadata - description 테스트입니다. 日本語 Metadata - description 테스트입니다. 日本語 Metadata - description 테스트입니다. 日本語 Metadata - description 테스트입니다. 日本語 Metadata - description 테스트입니다. 日本語 Metadata - description 테스트입니다. 日本語 Metadata - description 테스트입니다. 日本語 Metadata - description 테스트입니다. 日本語 Metadata - description 테스트입니다. 日本語 Metadata - description 테스트입니다. 日本語 Metadata - description 테스트입니다. 日本語 Metadata - description 테스트입니다. 日本語 Metadata - description 테스트입니다. 日本語 Metadata - description 테스트입니다. 日本語 Metadata - description 테스트입니다. 日本語 Metadata - description 테스트입니다. 日本語 Metadata - description 테스트입니다. 日本語 Metadata - description 테스트입니다. 日本語 Metadata - description 테스트입니다. 日本語 Metadata - description 테스트입니다. 日本語 Metadata - description 테스트입니다. 日本語 Metadata - description 테스트입니다. ",
+    "description": "日本語 Metadata - description テストです.",
     "images": ["/thumbnail.png"]
   },
-
   "notFound": {
     "text1": "ページが見つかりません。",
-    "text2": "お探しのページは存在しないか、移動された可能性があります。",
+    "text2": "お探しのページが存在しないか、移動された可能性があります。",
     "text3": "ホームに戻る"
   },
-
   "LanguageDialog": {
     "setting": "言語設定",
-    "settingDescription": "언어를 선택하는 영역입니다.",
+    "settingDescription": "言語を選択する領域です。",
     "change": "変更",
     "languageName": {
-      "ko": "한국어",
-      "en": "English",
+      "ko": "韓国語",
+      "en": "英語",
       "ja": "日本語"
     }
   },
-
   "BannerTop1": {
     "element1": {
-      "label": "ウェブサイト",
+      "label": "website",
       "title": "ウェブサイト",
       "href": "/website"
     },
     "element2": {
-      "label": "ブログ",
+      "label": "blog",
       "title": "ブログ",
       "href": "/blog"
     }
   },
-
   "BannerTop2": {
     "element1": {
-      "label": "お問い合わせ",
+      "label": "contact",
       "title": "お問い合わせ",
       "href": "/contact"
     },
     "element2": {
-      "label": "管理者",
+      "label": "admin",
       "title": "管理者",
       "href": "/admin"
     }
   },
-
   "HeaderTop1": {
     "element1": {
-      "label": "紹介",
+      "label": "introduction",
       "title": "紹介",
       "href": "/introduction"
     },
     "element2": {
-      "label": "コミュニティ",
+      "label": "community",
       "title": "コミュニティ",
       "href": "/community"
     }
   },
   "HeaderTop2": {
     "element1": {
-      "label": "会員登録",
+      "label": "signUp",
       "title": "会員登録",
-      "href": "/signup"
+      "href": "/auth/signup"
     },
     "element2": {
-      "label": "ID / パスワード検索",
-      "title": "ID / パスワード検索",
+      "label": "findUser",
+      "title": "ID / パスワードをお忘れですか？",
       "href": "/signin/find-user"
+    },
+    "element3": {
+      "label": "login",
+      "title": "ログイン",
+      "href": "/auth/login"
     }
   },
-  "HeaderTop3": {
-    "element1": {
-      "label": "カカオ",
-      "title": "カカオ",
-      "href": "/"
-    },
-    "element2": {
-      "label": "グーグル",
-      "title": "グーグル",
-      "href": "/"
-    }
+  "kakaoButton": {
+    "label": "kakao",
+    "login": "Kakaoで続ける",
+    "signup": "Kakaoで始める"
+  },
+  "googleButton": {
+    "label": "google",
+    "login": "Googleで続ける",
+    "signup": "Googleで始める"
   },
   "HeaderTop4": {
     "login": "ログイン",
     "easyLogin": "簡単ログイン",
-    "email": "メール",
-    "password": "パスワード"
+    "email": "メールアドレス",
+    "password": "パスワード",
+    "passwordCheck": "パスワード確認",
+    "signup": "会員登録",
+    "easySignup": "簡単会員登録",
+    "noUser": "アカウントをお持ちでないですか？",
+    "yesUser": "すでにアカウントをお持ちですか？"
   },
   "HeaderBottom1": {
     "element1": {
-      "label": "ホーム",
+      "label": "home",
       "title": "ホーム",
       "href": "/"
     },
     "element2": {
-      "label": "やること",
+      "label": "todos",
       "title": "やること",
       "href": "/todos"
     }
   },
-
   "FooterTop1": {
     "element1": {
-      "label": "サイト紹介",
+      "label": "introduction",
       "title": "サイト紹介",
       "href": "/introduction"
     },
     "element2": {
-      "label": "フィード",
+      "label": "feed",
       "title": "フィード",
       "href": "/feed"
     },
     "element3": {
-      "label": "ブログ",
+      "label": "blog",
       "title": "ブログ",
       "href": "/blog"
     }
   },
   "FooterTop2": {
     "element1": {
-      "label": "プロジェクト",
+      "label": "project",
       "title": "プロジェクト",
       "href": "/project"
     }
   },
   "FooterTop3": {
     "element1": {
-      "label": "よくある質問",
+      "label": "faq",
       "title": "よくある質問",
       "href": "/service/faq"
     },
     "element2": {
-      "label": "お問い合わせ",
+      "label": "questions",
       "title": "お問い合わせ",
       "href": "/service/questions"
     }
   },
   "FooterTop4": {
     "element1": {
-      "label": "コミュニティ",
+      "label": "community",
       "title": "コミュニティ",
       "href": "/community"
     }
   },
   "FooterTop5": {
     "element1": {
-      "label": "開発者紹介",
+      "label": "info",
       "title": "開発者紹介",
       "href": "/info"
     }
   },
-
   "FooterButtom1": {
     "logo": "Kwak.dev",
-    "text1": "革新はすべてのクルーの問いから始まります。",
-    "text2": "AIなしでは想像できない世界を作るためには、思いもよらない多くの問いが必要です。",
-    "text3": "世界を変える新しい問いを投げかけるクルーをお待ちしています。",
+    "text1": "新しい技術を試し、考えをコードで表現します。",
+    "text2": "完成した成果物だけでなく、挑戦と失敗を記録し共有します。",
+    "text3": "より良い開発者になるための自由な旅を確認してください。",
     "element1": {
-      "label": "応募する",
-      "title": "応募する",
-      "href": "/"
+      "label": "apply",
+      "title": "確認する",
+      "href": "https://github.com/miss-gif"
     }
   },
-
   "FooterButtom2": {
     "element1": {
-      "label": "ギットハブ",
-      "title": "ギットハブ",
-      "href": "/"
+      "label": "깃허브",
+      "href": "https://github.com/miss-gif",
+      "iconUrl": "/github.svg"
     },
     "element2": {
-      "label": "ブログ",
-      "title": "ブログ",
-      "href": "/"
+      "label": "블로그",
+      "href": "https://kwak-blog.vercel.app",
+      "iconUrl": "/google.svg"
     },
     "element3": {
-      "label": "ノーション",
-      "title": "ノーション",
-      "href": "/"
+      "label": "노션",
+      "href": "/",
+      "iconUrl": "/kakao.svg"
     }
   }
 }
