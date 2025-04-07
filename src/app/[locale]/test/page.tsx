@@ -11,6 +11,9 @@ export default function Page() {
       <Button asChild>
         <Link href="test/NotFound/">NotFound 테스트</Link>
       </Button>
+      <Button asChild>
+        <Link href="test/private/">PrivatePage 테스트</Link>
+      </Button>
     </Inner>
   );
 }
