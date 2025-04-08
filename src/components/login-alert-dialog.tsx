@@ -1,4 +1,4 @@
-import LoginForm from "@/components/auth/login-form";
+import Page from "@/app/[locale]/auth/login/page";
 import {
   AlertDialog,
   AlertDialogCancel,
@@ -30,7 +30,7 @@ export function LoginAlertDialog() {
           </AlertDialogDescription>
         </AlertDialogHeader>
 
-        <LoginForm />
+        <Page />
 
         <AlertDialogCancel className="absolute right-4 top-4 p-1 rounded-full hover:bg-gray-100">
           <XIcon className="h-5 w-5" />

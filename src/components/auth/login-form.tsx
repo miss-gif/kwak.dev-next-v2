@@ -1,12 +1,8 @@
 "use client";
 
-import { AuthHeader } from "@/app/[locale]/auth/components/auth-header";
 import { CustomFormField } from "@/components/auth/form-field";
-import { SocialLoginButtons } from "@/components/auth/social-login-buttons";
 import { Button } from "@/components/ui/button";
 import { Form } from "@/components/ui/form";
-import { Link } from "@/i18n/navigation";
-import { handleOAuthLogin } from "@/utils/auth/oauth-login";
 import { createClient } from "@/utils/supabase/client";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useTranslations } from "next-intl";
@@ -22,10 +18,7 @@ const formSchema = z.object({
 });
 
 const LoginForm = () => {
-  const t2 = useTranslations("HeaderTop2");
   const t4 = useTranslations("HeaderTop4");
-  const keys1 = ["element1"] as const;
-  const keys2 = ["element2"] as const;
 
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
@@ -51,10 +44,7 @@ const LoginForm = () => {
           description: "이메일과 비밀번호를 확인해주세요.",
         });
       } else {
-        toast.success("로그인 성공!", {
-          description: "메인 페이지로 이동합니다.",
-        });
-        router.push("/");
+        toast.success("로그인 성공!");
         router.refresh();
       }
     } catch (error) {

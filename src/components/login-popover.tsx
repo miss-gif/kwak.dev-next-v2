@@ -1,4 +1,4 @@
-import LogoutButton from "@/components/auth/logout-button";
+import LogoutButton from "@/app/[locale]/auth/components/logout-button";
 import { Button } from "@/components/ui/button";
 import {
   Popover,
