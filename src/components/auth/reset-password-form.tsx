@@ -1,12 +1,5 @@
 "use client";
 
-import { useState } from "react";
-import { useRouter } from "next/navigation";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm } from "react-hook-form";
-import * as z from "zod";
-import { toast } from "sonner";
-
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -16,7 +9,6 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
 import {
   Form,
   FormControl,
@@ -25,6 +17,13 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
+import { Input } from "@/components/ui/input";
+import { Link } from "@/i18n/navigation";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useState } from "react";
+import { useForm } from "react-hook-form";
+import { toast } from "sonner";
+import * as z from "zod";
 
 const formSchema = z.object({
   email: z.string().email({
@@ -33,7 +32,6 @@ const formSchema = z.object({
 });
 
 export function ResetPasswordForm() {
-  const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
 
   const form = useForm<z.infer<typeof formSchema>>({
@@ -50,8 +48,6 @@ export function ResetPasswordForm() {
       toast.success("이메일이 발송되었습니다", {
         description: "이메일을 확인하여 비밀번호를 재설정해주세요.",
       });
-
-      router.push("/auth/login");
     } catch (error) {
       toast.error("비밀번호 재설정 실패", {
         description: "잠시 후 다시 시도해주세요.",
@@ -62,13 +58,14 @@ export function ResetPasswordForm() {
   }
 
   return (
-    <Card className="w-[350px]">
+    <Card>
       <CardHeader>
         <CardTitle>비밀번호 재설정</CardTitle>
         <CardDescription>
           가입한 이메일을 입력하시면 비밀번호 재설정 링크를 보내드립니다.
         </CardDescription>
       </CardHeader>
+
       <CardContent>
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
@@ -91,15 +88,12 @@ export function ResetPasswordForm() {
           </form>
         </Form>
       </CardContent>
+
       <CardFooter>
         <div className="text-center w-full text-sm text-muted-foreground">
-          <Button
-            variant="link"
-            className="p-0 text-primary"
-            onClick={() => router.push("/auth/login")}
-          >
-            로그인으로 돌아가기
-          </Button>
+          <Link href={"/auth/login"} className="hover:underline">
+            로그인하러 가기
+          </Link>
         </div>
       </CardFooter>
     </Card>

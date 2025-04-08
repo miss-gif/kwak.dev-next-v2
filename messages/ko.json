@@ -69,7 +69,7 @@
     "element2": {
       "label": "findUser",
       "title": "아이디 / 비밀번호를 잊으셨나요?",
-      "href": "/signin/find-user"
+      "href": "/auth/reset-password"
     },
     "element3": {
       "label": "login",

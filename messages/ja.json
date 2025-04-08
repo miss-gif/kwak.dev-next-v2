@@ -64,7 +64,7 @@
     "element2": {
       "label": "findUser",
       "title": "ID / パスワードをお忘れですか？",
-      "href": "/signin/find-user"
+      "href": "/auth/reset-password"
     },
     "element3": {
       "label": "login",
