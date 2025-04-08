@@ -102,14 +102,14 @@
   },
   "HeaderBottom1": {
     "element1": {
-      "label": "home",
-      "title": "홈",
-      "href": "/"
+      "label": "schedule",
+      "title": "작업일정",
+      "href": "/schedule"
     },
     "element2": {
-      "label": "todos",
-      "title": "할 일 ",
-      "href": "/todos"
+      "label": "board",
+      "title": "게시판",
+      "href": "/board"
     }
   },
 
