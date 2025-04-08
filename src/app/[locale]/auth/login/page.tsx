@@ -25,11 +25,7 @@ export default function Page() {
       />
       <LoginForm />
       <AuthUserFind />
-      <AuthEasyLogin
-        isLoading={isLoading}
-        setIsLoading={setIsLoading}
-        text={easyLogin}
-      />
+      <AuthEasyLogin text={easyLogin} />
       <AuthFooter text={noUser} el={keys1} link={t2} />
     </>
   );

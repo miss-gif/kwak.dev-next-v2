@@ -24,11 +24,7 @@ export default function Page() {
         description="회원가입하고 더 많은 기능을 이용하세요."
       />
       <SignupForm />
-      <AuthEasyLogin
-        isLoading={isLoading}
-        setIsLoading={setIsLoading}
-        text={easySignup}
-      />
+      <AuthEasyLogin text={easySignup} />
       <AuthFooter text={yesUser} el={keys3} link={t2} />
     </>
   );
