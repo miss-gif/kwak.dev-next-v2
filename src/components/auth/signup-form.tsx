@@ -1,16 +1,11 @@
 "use client";
 
-import { AuthHeader } from "@/app/[locale]/auth/components/auth-header";
 import { CustomFormField } from "@/components/auth/form-field";
-import { SocialLoginButtons } from "@/components/auth/social-login-buttons";
 import { Button } from "@/components/ui/button";
 import { Form } from "@/components/ui/form";
-import { handleOAuthLogin } from "@/utils/auth/oauth-login";
 import { createClient } from "@/utils/supabase/client";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useTranslations } from "next-intl";
-import Link from "next/link";
-import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
