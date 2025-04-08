@@ -5,7 +5,7 @@ import Link from "next/link";
 
 export default function Page() {
   return (
-    <Inner className="mb-10">
+    <div className="mb-10">
       <header className="mb-6">
         <h1 className="text-3xl font-bold text-gray-800">게시판</h1>
         <p className="mt-2 text-sm text-gray-600">
@@ -109,6 +109,6 @@ export default function Page() {
           </button>
         </nav>
       </div>
-    </Inner>
+    </div>
   );
 }

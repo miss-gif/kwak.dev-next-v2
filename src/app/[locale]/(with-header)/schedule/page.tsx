@@ -83,19 +83,17 @@ const mvpFeatures = [
 
 export default function Page() {
   return (
-    <Inner>
-      <Accordion type="single" collapsible>
-        {mvpFeatures.map((mvp) => (
-          <AccordionItem key={mvp.value} value={mvp.value}>
-            <AccordionTrigger>{mvp.title}</AccordionTrigger>
-            <AccordionContent>
-              {mvp.content.map((item, index) => (
-                <div key={index}>{item}</div>
-              ))}
-            </AccordionContent>
-          </AccordionItem>
-        ))}
-      </Accordion>
-    </Inner>
+    <Accordion type="single" collapsible>
+      {mvpFeatures.map((mvp) => (
+        <AccordionItem key={mvp.value} value={mvp.value}>
+          <AccordionTrigger>{mvp.title}</AccordionTrigger>
+          <AccordionContent>
+            {mvp.content.map((item, index) => (
+              <div key={index}>{item}</div>
+            ))}
+          </AccordionContent>
+        </AccordionItem>
+      ))}
+    </Accordion>
   );
 }
