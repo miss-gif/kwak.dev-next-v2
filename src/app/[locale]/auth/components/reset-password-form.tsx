@@ -58,23 +58,23 @@ export function ResetPasswordForm() {
   }
 
   return (
-    <Card>
+    <Card className="shadow-none border-none">
       <CardHeader>
         <CardTitle>비밀번호 재설정</CardTitle>
         <CardDescription>
-          가입한 이메일을 입력하시면 비밀번호 재설정 링크를 보내드립니다.
+          가입한 이메일을 입력하시면 <br /> 비밀번호 재설정 링크를 보내드립니다.
         </CardDescription>
       </CardHeader>
 
       <CardContent>
         <Form {...form}>
-          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
+          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-2">
             <FormField
               control={form.control}
               name="email"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>이메일</FormLabel>
+                  <FormLabel className="text-xs">이메일</FormLabel>
                   <FormControl>
                     <Input placeholder="name@example.com" {...field} />
                   </FormControl>
