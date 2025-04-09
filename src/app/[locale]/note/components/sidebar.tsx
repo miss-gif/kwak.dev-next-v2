@@ -1,28 +1,15 @@
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-
-interface Note {
-  id: number;
-  title: string;
-}
+import { useNoteStore } from "@/stores/noteStore";
 
 interface SidebarProps {
-  notes: Note[];
-  setIsCreating: (isCreating: boolean) => void;
-  setActiveNoteId: (id: number | null) => void;
-  activeNoteId: number | null;
   search: string;
   setSearch: (search: string) => void;
 }
 
-const Sidebar: React.FC<SidebarProps> = ({
-  notes,
-  setIsCreating,
-  setActiveNoteId,
-  activeNoteId,
-  search,
-  setSearch,
-}) => {
+const Sidebar: React.FC<SidebarProps> = ({ search, setSearch }) => {
+  const { notes, activeNoteId, setActiveNoteId, setIsCreating } =
+    useNoteStore();
   const handleCreateNote = () => {
     setIsCreating(true);
     setActiveNoteId(null);

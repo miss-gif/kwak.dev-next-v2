@@ -7,18 +7,12 @@ import NewNote from "@/app/[locale]/note/components/new-note";
 import Sidebar from "@/app/[locale]/note/components/sidebar";
 import ViewerNote from "@/app/[locale]/note/components/viewer-note";
 import BackButton from "@/components/back-button";
+import { useNoteStore } from "@/stores/noteStore";
 import { useCallback, useEffect, useMemo, useState } from "react";
-import { Database } from "../../../../types_db";
 
 export default function Page() {
-  // 활성화된 노트의 ID를 저장하는 상태
-  const [activeNoteId, setActiveNoteId] = useState<number | null>(null);
-  // 새로운 노트를 생성 중인지 여부를 저장하는 상태
-  const [isCreating, setIsCreating] = useState(false);
-  // 노트 목록을 저장하는 상태
-  const [notes, setNotes] = useState<
-    Database["public"]["Tables"]["note"]["Row"][]
-  >([]);
+  const { notes, setNotes, activeNoteId, isCreating } = useNoteStore();
+
   // 검색어를 저장하는 상태
   const [search, setSearch] = useState<string>("");
 
@@ -48,25 +42,18 @@ export default function Page() {
   const renderContent = useMemo(() => {
     if (isCreating) {
       // 새로운 노트를 생성 중일 때
-      return (
-        <NewNote
-          fetchNotes={fetchNotes}
-          setIsCreating={setIsCreating}
-          setActiveNoteId={setActiveNoteId}
-        />
-      );
+      return <NewNote fetchNotes={fetchNotes} />;
     }
     if (activeNoteId && activeNote.id !== null) {
-      // 특정 노트가 활성화되어 있을 때
       return (
         <ViewerNote
-          activeNote={activeNote}
-          setActiveNoteId={setActiveNoteId}
+          activeNote={
+            activeNote as { id: number; title: string; content: string }
+          }
           fetchNotes={fetchNotes}
         />
       );
     }
-    // 아무 노트도 활성화되지 않았을 때
     return <EmptyNote />;
   }, [isCreating, activeNoteId, activeNote, fetchNotes]);
 
@@ -76,10 +63,6 @@ export default function Page() {
       <Header />
       <div className="grow flex">
         <Sidebar
-          notes={notes} // 노트 목록
-          setIsCreating={setIsCreating} // 새로운 노트 생성 상태 변경 함수
-          setActiveNoteId={setActiveNoteId} // 활성화된 노트 ID 변경 함수
-          activeNoteId={activeNoteId} // 활성화된 노트 ID
           search={search} // 검색어
           setSearch={setSearch} // 검색어 변경 함수
         />

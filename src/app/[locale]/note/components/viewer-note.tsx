@@ -3,26 +3,21 @@
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
+import { useNoteStore } from "@/stores/noteStore";
 import { createClient } from "@/utils/supabase/client";
 import React, { useEffect, useState } from "react";
 
-type Note = {
-  id: number;
-  title: string;
-  content: string;
-};
-
 type ViewerNoteProps = {
-  activeNote: Note;
-  setActiveNoteId: (id: number | null) => void;
+  activeNote: {
+    id: number;
+    title: string;
+    content: string;
+  };
   fetchNotes: () => Promise<void>;
 };
 
-const ViewerNote = ({
-  activeNote,
-  setActiveNoteId,
-  fetchNotes,
-}: ViewerNoteProps) => {
+const ViewerNote = ({ activeNote, fetchNotes }: ViewerNoteProps) => {
+  const { setActiveNoteId } = useNoteStore();
   const [title, setTitle] = useState(activeNote?.title);
   const [content, setContent] = useState(activeNote?.content);
   const [isEditing, setIsEditing] = useState(false);

@@ -3,20 +3,16 @@
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
+import { useNoteStore } from "@/stores/noteStore";
 import { createClient } from "@/utils/supabase/client";
 import { useState } from "react";
 
 interface NewNoteProps {
   fetchNotes: () => Promise<void>; // 노트 목록을 새로고침하는 함수
-  setIsCreating: (isCreating: boolean) => void; // 새 노트 작성 상태를 설정하는 함수
-  setActiveNoteId: (id: number) => void; // 활성화된 노트 ID를 설정하는 함수
 }
 
-const NewNote = ({
-  fetchNotes,
-  setIsCreating,
-  setActiveNoteId,
-}: NewNoteProps) => {
+const NewNote = ({ fetchNotes }: NewNoteProps) => {
+  const { setIsCreating, setActiveNoteId } = useNoteStore();
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const supabase = createClient(); // Supabase 클라이언트 생성
