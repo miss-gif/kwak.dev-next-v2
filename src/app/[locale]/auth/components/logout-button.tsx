@@ -1,18 +1,18 @@
 import { Button } from "@/components/ui/button";
+import useAuthStore from "@/stores/authStore";
 import { signOut } from "@/utils/supabase/actions";
 import { useRouter } from "next/navigation";
 import React from "react";
 
-type Props = {
-  setIsLoggedIn: (isLoggedIn: boolean) => void;
-};
+const LogoutButton = () => {
+  const { setIsLoggedIn, setEmail } = useAuthStore();
 
-const LogoutButton = ({ setIsLoggedIn }: Props) => {
   const router = useRouter();
 
   const fetchSignOut = async () => {
-    await signOut();
     setIsLoggedIn(false);
+    setEmail("");
+    await signOut();
     router.push("/");
   };
 

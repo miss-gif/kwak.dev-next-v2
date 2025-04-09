@@ -1,6 +1,5 @@
 "use client";
 
-import Inner from "@/components/layout/Inner";
 import { Button } from "@/components/ui/button";
 import { useRouter } from "next/navigation";
 import { useState } from "react";

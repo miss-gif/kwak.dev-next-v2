@@ -6,16 +6,15 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover";
 import { Link } from "@/i18n/navigation";
+import useAuthStore from "@/stores/authStore";
 import Image from "next/image";
 
-interface Props {
-  email: string;
-  point?: number | null;
-  couponCount?: number | null;
-  setIsLoggedIn: (isLoggedIn: boolean) => void;
-}
+function LoginPopover() {
+  const { isLoggedIn, email } = useAuthStore();
 
-function LoginPopover({ email, point, couponCount, setIsLoggedIn }: Props) {
+  let couponCount = isLoggedIn ? 3 : 0;
+  let point = isLoggedIn ? 1000 : 0;
+
   return (
     <Popover>
       <PopoverTrigger asChild>
@@ -36,7 +35,7 @@ function LoginPopover({ email, point, couponCount, setIsLoggedIn }: Props) {
           point={(point = 0)}
         />
         <NavigationSection />
-        <LogoutButton setIsLoggedIn={setIsLoggedIn} />
+        <LogoutButton />
       </PopoverContent>
     </Popover>
   );

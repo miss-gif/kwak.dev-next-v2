@@ -3,16 +3,16 @@ import { SheetSide } from "@/components/layout/header/mo-sidebar";
 import { LoginAlertDialog } from "@/components/login-alert-dialog";
 import LoginPopover from "@/components/login-popover";
 import { Link } from "@/i18n/navigation";
+import useAuthStore from "@/stores/authStore";
 import React from "react";
 
 type Props = {
-  isLoggedIn: boolean;
-  setIsLoggedIn: React.Dispatch<React.SetStateAction<boolean>>;
-  data: { email: string };
   inputRef: React.RefObject<HTMLInputElement | null>;
 };
 
-const MoHeaderTop = ({ isLoggedIn, setIsLoggedIn, data, inputRef }: Props) => {
+const MoHeaderTop = ({ inputRef }: Props) => {
+  const { isLoggedIn, email } = useAuthStore();
+
   return (
     <div className="flex items-center justify-between gap-4 relative md:hidden">
       <div className="block md:hidden">
@@ -25,11 +25,7 @@ const MoHeaderTop = ({ isLoggedIn, setIsLoggedIn, data, inputRef }: Props) => {
 
       <div className="flex items-center gap-2">
         <LanguageDialog />
-        {!isLoggedIn ? (
-          <LoginAlertDialog />
-        ) : (
-          <LoginPopover email={data.email} setIsLoggedIn={setIsLoggedIn} />
-        )}
+        {!isLoggedIn ? <LoginAlertDialog /> : <LoginPopover />}
       </div>
     </div>
   );
