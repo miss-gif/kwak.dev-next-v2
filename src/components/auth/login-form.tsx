@@ -7,7 +7,7 @@ import { createClient } from "@/utils/supabase/client";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useTranslations } from "next-intl";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
 import { z } from "zod";
@@ -19,10 +19,10 @@ const formSchema = z.object({
 
 const LoginForm = () => {
   const t4 = useTranslations("HeaderTop4");
-
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
   const [message, setMessage] = useState<string | null>(null);
+  const [redirectTo, setRedirectTo] = useState("/");
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -45,7 +45,7 @@ const LoginForm = () => {
         });
       } else {
         toast.success("로그인 성공!");
-        router.refresh();
+        router.push(redirectTo);
       }
     } catch (error) {
       toast.error("로그인 실패", {
@@ -55,6 +55,12 @@ const LoginForm = () => {
       setIsLoading(false);
     }
   };
+
+  useEffect(() => {
+    const searchParams = new URLSearchParams(window.location.search);
+    const redirect = searchParams.get("redirectTo");
+    if (redirect) setRedirectTo(redirect);
+  }, []);
 
   return (
     <Form {...form}>
