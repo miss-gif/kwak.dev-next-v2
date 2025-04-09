@@ -95,16 +95,22 @@
   },
   "HeaderBottom1": {
     "element1": {
-      "label": "home",
-      "title": "Home",
-      "href": "/"
+      "label": "schedule",
+      "title": "작업일정",
+      "href": "/schedule"
     },
     "element2": {
-      "label": "todos",
-      "title": "Todos",
-      "href": "/todos"
+      "label": "board",
+      "title": "게시판",
+      "href": "/board"
+    },
+    "element3": {
+      "label": "note",
+      "title": "노트",
+      "href": "/note"
     }
   },
+
   "FooterTop1": {
     "element1": {
       "label": "introduction",

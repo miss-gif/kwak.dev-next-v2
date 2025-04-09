@@ -9,7 +9,7 @@ const HeaderBottom = ({ focusInput }: { focusInput: () => void }) => {
   const pathname = usePathname();
 
   const t1 = useTranslations("HeaderBottom1");
-  const keys1 = ["element1", "element2"] as const;
+  const keys1 = ["element1", "element2", "element3"] as const;
 
   return (
     <div className="border-b border-b-slate-200">

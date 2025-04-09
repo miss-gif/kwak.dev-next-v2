@@ -110,6 +110,11 @@
       "label": "board",
       "title": "게시판",
       "href": "/board"
+    },
+    "element3": {
+      "label": "note",
+      "title": "노트",
+      "href": "/note"
     }
   },
 
