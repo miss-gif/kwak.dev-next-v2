@@ -39,17 +39,46 @@ export type Database = {
       categories: {
         Row: {
           id: number
-          name: string
+          slug: string
         }
         Insert: {
           id?: number
-          name: string
+          slug: string
         }
         Update: {
           id?: number
-          name?: string
+          slug?: string
         }
         Relationships: []
+      }
+      category_translations: {
+        Row: {
+          category_id: number | null
+          id: number
+          lang_code: string
+          localized_name: string
+        }
+        Insert: {
+          category_id?: number | null
+          id?: number
+          lang_code: string
+          localized_name: string
+        }
+        Update: {
+          category_id?: number | null
+          id?: number
+          lang_code?: string
+          localized_name?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "category_translations_category_id_fkey"
+            columns: ["category_id"]
+            isOneToOne: false
+            referencedRelation: "categories"
+            referencedColumns: ["id"]
+          },
+        ]
       }
       comments: {
         Row: {
@@ -92,6 +121,21 @@ export type Database = {
             referencedColumns: ["id"]
           },
         ]
+      }
+      languages: {
+        Row: {
+          code: string
+          name: string
+        }
+        Insert: {
+          code: string
+          name: string
+        }
+        Update: {
+          code?: string
+          name?: string
+        }
+        Relationships: []
       }
       note: {
         Row: {
@@ -222,9 +266,96 @@ export type Database = {
         }
         Relationships: []
       }
+      ui_text_translations: {
+        Row: {
+          id: number
+          is_fallback: boolean | null
+          lang_code: string
+          last_updated_by: string | null
+          translated_text: string
+          ui_text_id: number
+          updated_at: string | null
+        }
+        Insert: {
+          id?: number
+          is_fallback?: boolean | null
+          lang_code: string
+          last_updated_by?: string | null
+          translated_text: string
+          ui_text_id: number
+          updated_at?: string | null
+        }
+        Update: {
+          id?: number
+          is_fallback?: boolean | null
+          lang_code?: string
+          last_updated_by?: string | null
+          translated_text?: string
+          ui_text_id?: number
+          updated_at?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "fk_ui_text"
+            columns: ["ui_text_id"]
+            isOneToOne: false
+            referencedRelation: "missing_translations"
+            referencedColumns: ["ui_text_id"]
+          },
+          {
+            foreignKeyName: "fk_ui_text"
+            columns: ["ui_text_id"]
+            isOneToOne: false
+            referencedRelation: "ui_texts"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "ui_text_translations_lang_code_fkey"
+            columns: ["lang_code"]
+            isOneToOne: false
+            referencedRelation: "languages"
+            referencedColumns: ["code"]
+          },
+          {
+            foreignKeyName: "ui_text_translations_lang_code_fkey"
+            columns: ["lang_code"]
+            isOneToOne: false
+            referencedRelation: "missing_translations"
+            referencedColumns: ["missing_lang_code"]
+          },
+        ]
+      }
+      ui_texts: {
+        Row: {
+          description: string | null
+          href: string | null
+          id: number
+          key: string
+        }
+        Insert: {
+          description?: string | null
+          href?: string | null
+          id?: number
+          key: string
+        }
+        Update: {
+          description?: string | null
+          href?: string | null
+          id?: number
+          key?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
-      [_ in never]: never
+      missing_translations: {
+        Row: {
+          key: string | null
+          missing_lang_code: string | null
+          ui_text_id: number | null
+        }
+        Relationships: []
+      }
     }
     Functions: {
       [_ in never]: never
