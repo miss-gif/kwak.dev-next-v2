@@ -1,14 +1,14 @@
 "use client";
 
-import { useState, useMemo, useEffect, useCallback } from "react";
-import BackButton from "@/components/back-button";
-import { Database } from "../../../../types_db";
-import { createClient } from "@/utils/supabase/client";
-import NewNote from "@/app/[locale]/note/components/new-note";
-import ViewerNote from "@/app/[locale]/note/components/viewer-note";
+import { getNotes } from "@/actions/note-actions";
 import EmptyNote from "@/app/[locale]/note/components/empty-note";
 import Header from "@/app/[locale]/note/components/header";
+import NewNote from "@/app/[locale]/note/components/new-note";
 import Sidebar from "@/app/[locale]/note/components/sidebar";
+import ViewerNote from "@/app/[locale]/note/components/viewer-note";
+import BackButton from "@/components/back-button";
+import { useCallback, useEffect, useMemo, useState } from "react";
+import { Database } from "../../../../types_db";
 
 export default function Page() {
   // 활성화된 노트의 ID를 저장하는 상태
@@ -21,20 +21,11 @@ export default function Page() {
   >([]);
   // 검색어를 저장하는 상태
   const [search, setSearch] = useState<string>("");
-  const supabase = createClient(); // Supabase 클라이언트 생성
 
   // 노트를 가져오는 함수
   const fetchNotes = useCallback(async () => {
-    try {
-      const { data, error } = await supabase
-        .from("note")
-        .select("*")
-        .ilike("title", `%${search}%`); // 제목에 검색어가 포함된 노트를 검색
-      if (error) throw error;
-      setNotes(data || []); // 가져온 노트를 상태에 저장
-    } catch (error) {
-      console.error("Error fetching notes:", error); // 에러 로그 출력
-    }
+    const data = await getNotes(search);
+    setNotes(data || []);
   }, [search]);
 
   // 컴포넌트가 마운트되거나 검색어가 변경될 때 노트를 가져옴
