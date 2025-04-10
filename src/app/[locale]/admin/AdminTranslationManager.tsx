@@ -1,12 +1,13 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import { createClient } from "@supabase/supabase-js";
-import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
-import { Input } from "@/components/ui/input";
+import TranslationEditor from "@/app/[locale]/admin/TranslationEditor";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
+import { createClient } from "@supabase/supabase-js";
+import { useEffect, useState } from "react";
 
 const supabase = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_URL!,
@@ -22,6 +23,7 @@ export default function AdminTranslationManager() {
   const [newHref, setNewHref] = useState("");
   const [newDescription, setNewDescription] = useState("");
   const [editingText, setEditingText] = useState<any>(null);
+  const [createMode, setCreateMode] = useState<any>(false);
 
   useEffect(() => {
     fetchUiTexts();
@@ -58,19 +60,6 @@ export default function AdminTranslationManager() {
       });
       setTranslations(result);
     }
-  };
-
-  const handleSaveTranslation = async () => {
-    if (!selectedTextId) return;
-    for (const lang_code of languages) {
-      const text = translations[lang_code] || "";
-      await supabase.from("ui_text_translations").upsert({
-        ui_text_id: selectedTextId,
-        lang_code,
-        translated_text: text,
-      });
-    }
-    fetchTranslations(selectedTextId);
   };
 
   const handleAddUiText = async () => {
@@ -110,26 +99,43 @@ export default function AdminTranslationManager() {
     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
       <Card>
         <CardContent className="p-4 space-y-4">
-          <h2 className="text-lg font-semibold">🗂 UI 텍스트 목록</h2>
+          <div className="flex justify-between items-center mb-4">
+            <h2 className="text-lg font-semibold">🗂 UI 텍스트 목록</h2>
 
-          <div className="space-y-2">
-            <Input
-              placeholder="Key"
-              value={newKey}
-              onChange={(e) => setNewKey(e.target.value)}
-            />
-            <Input
-              placeholder="Href"
-              value={newHref}
-              onChange={(e) => setNewHref(e.target.value)}
-            />
-            <Textarea
-              placeholder="Description"
-              value={newDescription}
-              onChange={(e) => setNewDescription(e.target.value)}
-            />
-            <Button onClick={handleAddUiText}>추가</Button>
+            <Button
+              onClick={() => {
+                setCreateMode(!createMode);
+                setEditingText(null);
+                setSelectedTextId(null);
+              }}
+            >
+              생성
+            </Button>
           </div>
+
+          {createMode && (
+            <div className="space-y-2">
+              <Label>Key</Label>
+              <Input
+                placeholder="Key"
+                value={newKey}
+                onChange={(e) => setNewKey(e.target.value)}
+              />
+              <Label>Href</Label>
+              <Input
+                placeholder="Href"
+                value={newHref}
+                onChange={(e) => setNewHref(e.target.value)}
+              />
+              <Label>Description</Label>
+              <Textarea
+                placeholder="Description"
+                value={newDescription}
+                onChange={(e) => setNewDescription(e.target.value)}
+              />
+              <Button onClick={handleAddUiText}>추가</Button>
+            </div>
+          )}
 
           <div className="space-y-2">
             {uiTexts.map((t) => (
@@ -140,8 +146,11 @@ export default function AdminTranslationManager() {
               >
                 <div className="flex justify-between items-center">
                   <div>
-                    <p className="font-medium">{t.key}</p>
-                    <p className="text-xs text-gray-500">{t.href}</p>
+                    <p className="font-medium">key : {t.key}</p>
+                    <p className="text-xs text-gray-500">href : {t.href}</p>
+                    <p className="text-xs text-gray-500">
+                      description : {t.description}
+                    </p>
                   </div>
                   <div className="space-x-2">
                     <Button
@@ -171,6 +180,7 @@ export default function AdminTranslationManager() {
           {editingText && (
             <div className="space-y-2 mt-4 border-t pt-4">
               <h3 className="text-md font-medium">✏️ UI 텍스트 수정</h3>
+              <Label>Key</Label>
               <Input
                 placeholder="Key"
                 value={editingText.key}
@@ -178,6 +188,7 @@ export default function AdminTranslationManager() {
                   setEditingText({ ...editingText, key: e.target.value })
                 }
               />
+              <Label>Href</Label>
               <Input
                 placeholder="Href"
                 value={editingText.href || ""}
@@ -185,6 +196,7 @@ export default function AdminTranslationManager() {
                   setEditingText({ ...editingText, href: e.target.value })
                 }
               />
+              <Label>Description</Label>
               <Textarea
                 placeholder="Description"
                 value={editingText.description || ""}
@@ -202,35 +214,13 @@ export default function AdminTranslationManager() {
       </Card>
 
       {selectedTextId && (
-        <Card>
-          <CardContent className="p-4 space-y-4">
-            <h2 className="text-lg font-semibold">🌍 번역 관리</h2>
-            <Tabs defaultValue={languages[0]} className="w-full">
-              <TabsList>
-                {languages.map((lang) => (
-                  <TabsTrigger key={lang} value={lang}>
-                    {lang}
-                  </TabsTrigger>
-                ))}
-              </TabsList>
-              {languages.map((lang) => (
-                <TabsContent key={lang} value={lang} className="mt-2">
-                  <Textarea
-                    placeholder={`${lang} 번역 입력`}
-                    value={translations[lang] || ""}
-                    onChange={(e) =>
-                      setTranslations({
-                        ...translations,
-                        [lang]: e.target.value,
-                      })
-                    }
-                  />
-                </TabsContent>
-              ))}
-            </Tabs>
-            <Button onClick={handleSaveTranslation}>저장</Button>
-          </CardContent>
-        </Card>
+        <TranslationEditor
+          selectedTextId={selectedTextId}
+          translations={translations}
+          setTranslations={setTranslations}
+          languages={languages}
+          fetchTranslations={fetchTranslations}
+        />
       )}
     </div>
   );
