@@ -1,4 +1,4 @@
-import AdminTranslationManager from "@/app/[locale]/admin/AdminTranslationManager";
+import AdminTranslationManager from "@/app/[locale]/admin/components/AdminTranslationManager";
 
 export default function Page() {
   return (
