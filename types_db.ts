@@ -272,27 +272,27 @@ export type Database = {
           is_fallback: boolean | null
           lang_code: string
           last_updated_by: string | null
-          translated_text: string
           ui_text_id: number
           updated_at: string | null
+          value: string
         }
         Insert: {
           id?: number
           is_fallback?: boolean | null
           lang_code: string
           last_updated_by?: string | null
-          translated_text: string
           ui_text_id: number
           updated_at?: string | null
+          value: string
         }
         Update: {
           id?: number
           is_fallback?: boolean | null
           lang_code?: string
           last_updated_by?: string | null
-          translated_text?: string
           ui_text_id?: number
           updated_at?: string | null
+          value?: string
         }
         Relationships: [
           {
@@ -328,21 +328,24 @@ export type Database = {
       ui_texts: {
         Row: {
           description: string | null
-          href: string | null
           id: number
           key: string
+          namespace: string | null
+          url: string | null
         }
         Insert: {
           description?: string | null
-          href?: string | null
           id?: number
           key: string
+          namespace?: string | null
+          url?: string | null
         }
         Update: {
           description?: string | null
-          href?: string | null
           id?: number
           key?: string
+          namespace?: string | null
+          url?: string | null
         }
         Relationships: []
       }

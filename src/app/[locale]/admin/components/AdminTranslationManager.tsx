@@ -5,15 +5,9 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { createClient } from "@supabase/supabase-js";
+import { createClient } from "@/utils/supabase/client";
 import { useEffect, useState } from "react";
 import { Database } from "../../../../../types_db";
-
-// Supabase 클라이언트 생성
-const supabase = createClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL!,
-  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
-);
 
 // 모드 타입 정의: 조회, 생성, 수정 모드
 type Mode = "view" | "create" | "edit";
@@ -28,6 +22,7 @@ type UiTextTranslationsRowUpdate =
 type UiTextsRow = Database["public"]["Tables"]["ui_texts"]["Row"];
 
 export default function AdminTranslationManager() {
+  const supabase = createClient(); // Supabase 클라이언트 생성
   // UI 텍스트 목록 상태
   const [uiTexts, setUiTexts] = useState<UiTextsRow[]>([]);
   // 선택된 텍스트 ID 상태
@@ -37,8 +32,9 @@ export default function AdminTranslationManager() {
   // 지원 언어 목록 상태
   const [languages, setLanguages] = useState<string[]>([]);
   // 새 UI 텍스트 생성 관련 상태
+  const [nameSpace, setNameSpace] = useState("");
   const [newKey, setNewKey] = useState("");
-  const [newHref, setNewHref] = useState("");
+  const [newUrl, setNewUrl] = useState("");
   const [newDescription, setNewDescription] = useState("");
   // 현재 편집 중인 텍스트 상태
   const [editingText, setEditingText] = useState<any>(null);
@@ -78,7 +74,7 @@ export default function AdminTranslationManager() {
   const fetchTranslations = async (textId: number) => {
     const { data } = await supabase
       .from("ui_text_translations")
-      .select("lang_code, translated_text")
+      .select("lang_code, value")
       .eq("ui_text_id", textId);
     if (data) {
       console.log("번역 데이터:", data);
@@ -86,7 +82,7 @@ export default function AdminTranslationManager() {
       // 언어코드를 키로, 번역 텍스트를 값으로 하는 객체 생성
       const result: Record<string, string> = {};
       data.forEach((row) => {
-        result[row.lang_code] = row.translated_text;
+        result[row.lang_code] = row.value;
       });
       setTranslations(result);
     }
@@ -96,7 +92,7 @@ export default function AdminTranslationManager() {
   const test = async (textId: number) => {
     const { data } = await supabase
       .from("ui_text_translations")
-      .select("translated_text"); // 번역 데이터 가져오기
+      .select("value"); // 번역 데이터 가져오기
     // .eq("ui_text_id", textId); // ui_text_id로 필터링
     if (data) {
       console.log("번역 데이터:", data);
@@ -105,6 +101,7 @@ export default function AdminTranslationManager() {
 
   // 새 UI 텍스트 추가 처리 함수
   const handleAddUiText = async () => {
+    if (!nameSpace) return; // nameSpace는 필수값
     if (!newKey) return; // 키는 필수값
 
     // languages가 비어 있다면 직접 불러오기
@@ -120,8 +117,9 @@ export default function AdminTranslationManager() {
     const { data: insertedTexts, error: insertError } = await supabase
       .from("ui_texts")
       .insert({
+        namespace: nameSpace,
         key: newKey,
-        href: newHref || null,
+        url: newUrl || null,
         description: newDescription || null,
       })
       .select(); // 삽입된 데이터 반환
@@ -138,7 +136,7 @@ export default function AdminTranslationManager() {
     const insertTranslations = languages.map((lang) => ({
       ui_text_id: newTextId,
       lang_code: lang,
-      translated_text: "빈 문자",
+      value: "값이 비어있습니다.",
     }));
 
     const { error: translationsError } = await supabase
@@ -150,8 +148,9 @@ export default function AdminTranslationManager() {
     }
 
     // 3. 상태 초기화
+    setNameSpace("");
     setNewKey("");
-    setNewHref("");
+    setNewUrl("");
     setNewDescription("");
     setMode("view");
 
@@ -175,7 +174,7 @@ export default function AdminTranslationManager() {
       .from("ui_texts")
       .update({
         key: editingText.key,
-        href: editingText.href,
+        url: editingText.url,
         description: editingText.description,
       })
       .eq("id", editingText.id);
@@ -196,8 +195,9 @@ export default function AdminTranslationManager() {
       // create 모드로 전환 시 모든 선택/편집 상태 초기화
       setSelectedTextId(null);
       setEditingText(null);
+      setNameSpace("");
       setNewKey("");
-      setNewHref("");
+      setNewUrl("");
       setNewDescription("");
     } else if (newMode === "edit") {
       // edit 모드로 전환 시 선택된 텍스트 초기화하고 편집 텍스트 설정
@@ -222,7 +222,7 @@ export default function AdminTranslationManager() {
       await supabase.from("ui_text_translations").upsert({
         ui_text_id: selectedTextId,
         lang_code,
-        translated_text: text,
+        value: text,
       });
     }
     // 번역 데이터 갱신
@@ -251,8 +251,9 @@ export default function AdminTranslationManager() {
                 >
                   <div className="flex justify-between items-center">
                     <div>
+                      <p className="font-medium">namespace : {t.namespace}</p>
                       <p className="font-medium">key : {t.key}</p>
-                      <p className="text-xs text-gray-500">href : {t.href}</p>
+                      <p className="text-xs text-gray-500">url : {t.url}</p>
                       <p className="text-xs text-gray-500">
                         description : {t.description}
                       </p>
@@ -323,13 +324,15 @@ export default function AdminTranslationManager() {
             <h3 className="text-md font-medium mb-3">✨ 새 UI 텍스트 생성</h3>
             <UiTextForm
               textData={{
+                namespace: nameSpace,
                 key: newKey,
-                href: newHref,
+                url: newUrl,
                 description: newDescription,
               }}
-              setTextData={({ key, href, description }) => {
+              setTextData={({ namespace, key, url, description }) => {
+                if (namespace !== undefined) setNameSpace(nameSpace);
                 if (key !== undefined) setNewKey(key);
-                if (href !== undefined) setNewHref(href || "");
+                if (url !== undefined) setNewUrl(url || "");
                 if (description !== undefined)
                   setNewDescription(description || "");
               }}
