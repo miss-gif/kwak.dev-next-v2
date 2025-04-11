@@ -1,4 +1,4 @@
-import { Database } from "../../../../../types_db";
+import { Database } from "../../../../../../types_db";
 
 export type UiTextsRowInsert =
   Database["public"]["Tables"]["ui_texts"]["Insert"];

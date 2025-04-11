@@ -4,7 +4,7 @@ import {
   UiTextFormProps,
   UiTextsRowInsert,
   UiTextsRowUpdate,
-} from "@/app/[locale]/admin/types/type";
+} from "@/app/[locale]/admin/i18n/types/type";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";

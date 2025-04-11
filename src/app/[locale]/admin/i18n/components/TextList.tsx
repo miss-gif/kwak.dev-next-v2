@@ -1,4 +1,4 @@
-import { UiTextsRow } from "@/app/[locale]/admin/types/type";
+import { UiTextsRow } from "@/app/[locale]/admin/i18n/types/type";
 import { Button } from "@/components/ui/button";
 type Props = {
   uiTexts: UiTextsRow[];

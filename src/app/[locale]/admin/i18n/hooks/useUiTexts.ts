@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { createClient } from "@/utils/supabase/client";
-import { Database } from "../../../../../types_db";
+import { Database } from "../../../../../../types_db";
 
 type UiTextsRow = Database["public"]["Tables"]["ui_texts"]["Row"];
 
