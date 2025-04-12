@@ -1,4 +1,4 @@
-import { Globe, Home } from "lucide-react";
+import { Globe, Home, TriangleAlert } from "lucide-react";
 
 import {
   Sidebar,
@@ -23,6 +23,11 @@ const items = [
     title: "i18n 설정",
     url: "/admin/i18n",
     icon: Globe,
+  },
+  {
+    title: "기능 테스트",
+    url: "/admin/test",
+    icon: TriangleAlert,
   },
 ];
 

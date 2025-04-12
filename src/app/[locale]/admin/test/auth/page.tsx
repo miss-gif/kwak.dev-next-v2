@@ -1,7 +1,7 @@
 "use client";
 
-import SignIn from "@/app/[locale]/test/auth/SignIn";
-import SignUp from "@/app/[locale]/test/auth/SignUp";
+import SignIn from "@/app/[locale]/admin/test/auth/SignIn";
+import SignUp from "@/app/[locale]/admin/test/auth/SignUp";
 import UserCheckButton from "@/components/auth/user-check-button";
 import Inner from "@/components/layout/Inner";
 import { Button } from "@/components/ui/button";

@@ -6,13 +6,13 @@ export default function Page() {
   return (
     <Inner className="flex gap-2">
       <Button asChild>
-        <Link href="test/auth/">Auth 테스트</Link>
+        <Link href="/admin/test/auth">Auth 테스트</Link>
       </Button>
       <Button asChild>
-        <Link href="test/NotFound/">NotFound 테스트</Link>
+        <Link href="/admin/test/NotFound">NotFound 테스트</Link>
       </Button>
       <Button asChild>
-        <Link href="test/private/">PrivatePage 테스트</Link>
+        <Link href="/admin/test/private">PrivatePage 테스트</Link>
       </Button>
     </Inner>
   );
