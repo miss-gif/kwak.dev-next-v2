@@ -1,12 +1,8 @@
-import { UiTextsRow } from "@/app/[locale]/admin/i18n/types/type";
+import {
+  TextListProps,
+  UiTextsRow,
+} from "@/app/[locale]/admin/i18n/types/type";
 import { Button } from "@/components/ui/button";
-type Props = {
-  uiTexts: UiTextsRow[];
-  selectedTextId: number | null;
-  onSelect: (id: number) => void;
-  onEdit: (text: UiTextsRow) => void;
-  onDelete: (id: number) => void;
-};
 
 export default function TextList({
   uiTexts,
@@ -14,7 +10,7 @@ export default function TextList({
   onSelect,
   onEdit,
   onDelete,
-}: Props) {
+}: TextListProps) {
   return (
     <div className="space-y-2 w-full">
       {uiTexts.map((t) => (
@@ -45,7 +41,9 @@ export default function TextList({
               <Button
                 variant="outline"
                 onClick={(e) => {
-                  e.stopPropagation();
+                  confirm(
+                    "정말 삭제하시겠습니까? 삭제된 데이터는 복구할 수 없습니다."
+                  ) || e.preventDefault();
                   onDelete(t.id);
                 }}
               >

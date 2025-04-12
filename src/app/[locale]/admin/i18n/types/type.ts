@@ -23,3 +23,19 @@ export type FormFieldProps = {
 };
 
 export type UiTextsRow = Database["public"]["Tables"]["ui_texts"]["Row"];
+
+export type TranslationEditorProps = {
+  textId: number;
+  translations: Record<string, string>;
+  setTranslations: (val: Record<string, string>) => void;
+  languages: string[];
+  onSave: () => void;
+};
+
+export type TextListProps = {
+  uiTexts: UiTextsRow[];
+  selectedTextId: number | null;
+  onSelect: (id: number) => void;
+  onEdit: (text: UiTextsRow) => void;
+  onDelete: (id: number) => void;
+};

@@ -1,14 +1,7 @@
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-
-type Props = {
-  textId: number;
-  translations: Record<string, string>;
-  setTranslations: (val: Record<string, string>) => void;
-  languages: string[];
-  onSave: () => void;
-};
+import { TranslationEditorProps } from "@/app/[locale]/admin/i18n/types/type";
 
 export default function TranslationEditor({
   textId,
@@ -16,7 +9,7 @@ export default function TranslationEditor({
   setTranslations,
   languages,
   onSave,
-}: Props) {
+}: TranslationEditorProps) {
   return (
     <div className="p-4 space-y-4">
       <h2 className="text-lg font-semibold">🌍 번역 관리</h2>
