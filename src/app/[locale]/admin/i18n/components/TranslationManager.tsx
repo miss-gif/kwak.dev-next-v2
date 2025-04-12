@@ -53,12 +53,21 @@ export default function TranslationManager({
 
   const handleSaveTranslation = async () => {
     if (!selectedTextId) return;
-    for (const lang_code of initialLanguages) {
-      await supabase.from("ui_text_translations").upsert({
-        ui_text_id: selectedTextId,
-        lang_code,
-        value: translations[lang_code] || "",
+
+    const updates = initialLanguages.map((lang_code) => ({
+      ui_text_id: selectedTextId,
+      lang_code,
+      value: translations[lang_code] || "",
+    }));
+
+    const { error } = await supabase
+      .from("ui_text_translations")
+      .upsert(updates, {
+        onConflict: "ui_text_id,lang_code", // Important: tells Supabase how to resolve conflicts
       });
+
+    if (error) {
+      console.error("Failed to upsert translations:", error);
     }
   };
 
