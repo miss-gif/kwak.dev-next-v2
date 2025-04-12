@@ -1,6 +1,5 @@
 import { dummyData } from "@/app/[locale]/(with-header)/board/data";
-import Inner from "@/components/layout/Inner";
-import { Button } from "@/components/ui/button";
+import PrivateButton from "@/components/private-button";
 import Link from "next/link";
 
 export default function Page() {
@@ -24,11 +23,7 @@ export default function Page() {
               일반
             </li>
           </ul>
-          <Button className="bg-blue-600 hover:bg-blue-700">
-            <Link href={"/board/new"} className="flex items-center gap-1">
-              <span>글쓰기</span>
-            </Link>
-          </Button>
+          <PrivateButton label="글쓰기" url="/board/new" />
         </div>
       </header>
       <div className="overflow-x-auto shadow-md rounded-lg">
