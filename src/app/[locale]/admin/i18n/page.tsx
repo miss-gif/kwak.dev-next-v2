@@ -1,4 +1,4 @@
-import TranslationManager from "@/app/[locale]/admin/i18n/components/TranslationManager";
+import TranslationManager from "@/app/[locale]/admin/i18n/components";
 import { createClient } from "@/utils/supabase/server";
 
 export default async function AdminPage() {
