@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 const HomeInfoData = {
   streakStats: {
     title: "streakStats",
@@ -24,7 +26,14 @@ interface HomeNoticeProps {
 const HomeNotice = ({ title, image }: HomeNoticeProps) => {
   return (
     <div className="overflow-hidden rounded-md bg-white bg-opacity-90">
-      <img src={image} alt={title} className="h-auto w-full" />
+      <Image
+        src={image}
+        alt={title}
+        width={467}
+        height={100}
+        className="h-auto w-full rounded-md bg-white bg-opacity-90 lg:hidden"
+        priority
+      />
     </div>
   );
 };

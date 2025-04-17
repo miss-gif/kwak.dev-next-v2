@@ -1,3 +1,4 @@
+import Image from "next/image";
 import React from "react";
 
 function Header() {
@@ -67,10 +68,12 @@ function RecommendedContent() {
             className="bg-white rounded-xl shadow-sm overflow-hidden hover:shadow-md transition duration-300"
           >
             <div className="h-48 bg-gray-200 relative">
-              <img
+              <Image
                 src={`https://source.unsplash.com/random/400x300?sig=${i}`}
                 alt="썸네일"
-                className="w-full h-full object-cover"
+                width={400}
+                height={300}
+                className="absolute inset-0 w-full h-full object-cover opacity-0 hover:opacity-100 transition-opacity duration-300"
               />
             </div>
             <div className="p-4">
