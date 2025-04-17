@@ -8,6 +8,7 @@ import { useEffect, useState } from "react";
 import TextList from "./TextList";
 import TranslationEditor from "./TranslationEditor";
 import UiTextForm from "./UiTextForm";
+import { toast } from "sonner";
 
 type Mode = "view" | "create" | "edit";
 type Props = { initialUiTexts: any[]; initialLanguages: string[] };
@@ -49,6 +50,7 @@ export default function TranslationManager({
     setNewText({ namespace: "", key: "", url: "", description: "" });
     setMode("view");
     fetchUiTexts();
+    toast.success("텍스트 생성 완료!");
   };
 
   const handleSaveTranslation = async () => {
@@ -66,7 +68,10 @@ export default function TranslationManager({
         onConflict: "ui_text_id,lang_code", // Important: tells Supabase how to resolve conflicts
       });
 
+    toast.success("번역관리 수정 완료!");
+
     if (error) {
+      toast.error("번역관리 수정 실패!");
       console.error("Failed to upsert translations:", error);
     }
   };
