@@ -1,5 +1,4 @@
 import { SocialLoginButtons } from "@/components/auth/social-login-buttons";
-import { handleOAuthLogin } from "@/utils/auth/oauth-login";
 
 type AuthEasyLoginProps = {
   text: string;
