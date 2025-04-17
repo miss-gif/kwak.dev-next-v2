@@ -41,10 +41,14 @@ export default function TextList({
               <Button
                 variant="outline"
                 onClick={(e) => {
-                  confirm(
-                    "정말 삭제하시겠습니까? 삭제된 데이터는 복구할 수 없습니다."
-                  ) || e.preventDefault();
-                  onDelete(t.id);
+                  e.stopPropagation();
+                  if (
+                    confirm(
+                      "정말 삭제하시겠습니까? 삭제된 데이터는 복구할 수 없습니다."
+                    )
+                  ) {
+                    onDelete(t.id);
+                  }
                 }}
               >
                 삭제
