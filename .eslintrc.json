@@ -1,0 +1,6 @@
+{
+  "extends": ["next", "prettier"],
+  "rules": {
+    "react/no-unescaped-entities": "off" // 특정 ESLint 규칙 비활성화
+  }
+}
