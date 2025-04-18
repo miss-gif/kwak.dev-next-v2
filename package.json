@@ -2,11 +2,13 @@
   "name": "kwak.dev-next-v2",
   "version": "0.1.0",
   "private": true,
+  "type": "module",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
     "lint": "next lint --max-warnings=0",
+    "test": "vitest",
     "generate-types": "npx supabase gen types typescript --project-id uqpgfzsajhwfgbmfipzr --schema public > types_db.ts"
   },
   "dependencies": {
@@ -75,10 +77,12 @@
     "eslint-config-next": "15.2.4",
     "eslint-config-prettier": "^10.1.1",
     "eslint-plugin-prettier": "^5.2.5",
+    "jsdom": "^26.1.0",
     "prettier": "^3.5.3",
     "sass": "^1.86.1",
     "tailwindcss": "^4",
-    "typescript": "^5"
+    "typescript": "^5",
+    "vitest": "^3.1.1"
   },
   "optionalDependencies": {
     "@tailwindcss/oxide-linux-x64-gnu": "^4",

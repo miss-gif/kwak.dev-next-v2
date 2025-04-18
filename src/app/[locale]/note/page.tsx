@@ -20,7 +20,7 @@ export default function Page() {
   const fetchNotes = useCallback(async () => {
     const data = await getNotes(search);
     setNotes(data || []);
-  }, [search]);
+  }, [search, setNotes]);
 
   // 컴포넌트가 마운트되거나 검색어가 변경될 때 노트를 가져옴
   useEffect(() => {

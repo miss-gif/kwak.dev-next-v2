@@ -28,5 +28,5 @@ export const useAuthListener = () => {
     });
 
     return () => listener.subscription.unsubscribe();
-  }, [setIsLoggedIn, setEmail]);
+  }, [supabase.auth, setIsLoggedIn, setEmail]);
 };
