@@ -33,7 +33,7 @@ export default function TranslationManager({
 
   useEffect(() => {
     fetchUiTexts();
-  }, []);
+  }, [fetchUiTexts]);
 
   const handleAdd = async () => {
     if (!newText.namespace || !newText.key) return;

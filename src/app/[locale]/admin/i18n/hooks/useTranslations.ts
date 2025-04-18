@@ -26,7 +26,7 @@ export function useTranslations(textId: number | null) {
     };
 
     fetch();
-  }, [textId]);
+  }, [textId, supabase]);
 
   return { translations, setTranslations };
 }
